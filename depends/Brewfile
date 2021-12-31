@@ -1,0 +1,2 @@
+brew "neovim"
+brew "zsh"
