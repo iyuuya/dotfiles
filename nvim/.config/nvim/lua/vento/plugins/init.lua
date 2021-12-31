@@ -22,4 +22,6 @@ packer.init({})
 
 return packer.startup(function(use)
   use("wbthomason/packer.nvim")
+  use("lotabout/skim")
+  use("lotabout/skim.vim")
 end)

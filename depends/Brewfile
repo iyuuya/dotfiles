@@ -1,2 +1,3 @@
 brew "neovim"
 brew "zsh"
+brew "sk"
