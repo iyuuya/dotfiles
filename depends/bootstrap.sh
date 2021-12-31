@@ -22,3 +22,4 @@ if [ ! -d /Applications/Alacritty.app ]; then
 fi
 
 sh $SCRIPT_DIR/asdf.sh
+sh $SCRIPT_DIR/neovim.sh
