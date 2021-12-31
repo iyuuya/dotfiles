@@ -3,4 +3,4 @@
 SCRIPT_DIR="$(cd $(dirname $0); pwd)"
 
 cd $SCRIPT_DIR && stow -t $HOME zsh nvim
-cd $SCRIPT_DIR/depends && brew bundle
+sh $SCRIPT_DIR/depends/bootstrap.sh
