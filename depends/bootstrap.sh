@@ -20,3 +20,9 @@ if [ ! -d /Applications/Alacritty.app ]; then
     && make app \
     && cp -r target/release/osx/Alacritty.app /Applications
 fi
+
+if [ ! -d $HOME/.asdf ]; then
+  git clone https://github.com/asdf-vm/asdf ~/.local/src/github.com/asdf-vm/asdf
+  ln -s $HOME/.local/src/github.com/asdf-vm/asdf $HOME/.asdf
+fi
+source $HOME/.asdf/asdf.sh
