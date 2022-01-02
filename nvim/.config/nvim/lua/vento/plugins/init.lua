@@ -2,7 +2,7 @@ local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.n
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   print("Installing packer.nvim")
-  vim.fn.system({
+  packer_boostrap = vim.fn.system({
     "git",
     "clone",
     "--depth",
@@ -24,4 +24,8 @@ return packer.startup(function(use)
   use("wbthomason/packer.nvim")
   use("lotabout/skim")
   use("lotabout/skim.vim")
+
+  if packer_boostrap then
+    require("packer").sync()
+  end
 end)
