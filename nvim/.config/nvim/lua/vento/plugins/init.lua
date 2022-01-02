@@ -22,8 +22,58 @@ packer.init({})
 
 return packer.startup(function(use)
   use("wbthomason/packer.nvim")
+
+  -- FuzzyFinder
   use("lotabout/skim")
   use("lotabout/skim.vim")
+
+  -- Treesitter
+  use({
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = "maintained",
+        sync_install = false,
+        highlight = {
+          enable = true,
+          additonal_vim_regex_highlighting = true,
+        },
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = "gnn",
+            node_incremental = "grn",
+            scope_incremental = "grc",
+            node_decremental = "gdm",
+          },
+        },
+        indent = {
+          enable = true,
+        },
+        textobjects = {
+          select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+              ["af"] = "@funciton.outer",
+              ["if"] = "@funciton.inner",
+              ["ac"] = "@class.outer",
+              ["ic"] = "@class.inner",
+              ["ab"] = "@block.outer",
+              ["ib"] = "@block.inner",
+              ["ap"] = "@parameter.outer",
+              ["ip"] = "@parameter.inner",
+            },
+          },
+        },
+      })
+
+      vim.opt.foldmethod = "expr"
+      vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+    end
+  })
+  use("nvim-treesitter/nvim-treesitter-textobjects")
 
   if packer_boostrap then
     require("packer").sync()
