@@ -75,6 +75,16 @@ return packer.startup(function(use)
   })
   use("nvim-treesitter/nvim-treesitter-textobjects")
 
+  -- Colorscheme
+  use({
+    "ellisonleao/gruvbox.nvim",
+    requires = { "rktjmp/lush.nvim" },
+    config = function()
+      vim.opt.background = "dark"
+      vim.cmd[[colorscheme gruvbox]]
+    end,
+  })
+
   if packer_boostrap then
     require("packer").sync()
   end
