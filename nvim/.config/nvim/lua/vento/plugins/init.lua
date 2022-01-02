@@ -148,6 +148,36 @@ return packer.startup(function(use)
   })
   use("folke/lua-dev.nvim")
 
+  -- cmp
+  use("hrsh7th/cmp-nvim-lsp")
+  use("hrsh7th/cmp-buffer")
+  use("hrsh7th/cmp-path")
+  use("hrsh7th/cmp-cmdline")
+  use({
+    "hrsh7th/nvim-cmp",
+    config = function()
+      local cmp = require("cmp")
+      cmp.setup({
+        mapping = {},
+        sources = cmp.config.sources({
+          { name = "nvim_lsp" },
+          { name = "buffer" },
+          { name = "path" },
+        }),
+      })
+      cmp.setup.cmdline("/", { sources = { name = "buffer" } })
+      cmp.setup.cmdline(":", {
+        sources = cmp.config.sources({
+          { name = "path" },
+          { name = "cmdline" },
+        }),
+      })
+
+      local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+      require("lspconfig").sumneko_lua.setup({ capabilities = capabilities })
+    end
+  })
+
   if PACKER_BOOSTRAP then
     require("packer").sync()
   end
