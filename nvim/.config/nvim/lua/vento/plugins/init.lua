@@ -86,11 +86,37 @@ return packer.startup(function(use)
   })
 
   -- LSP
+  use("neovim/nvim-lspconfig")
+  use("folke/lua-dev.nvim")
+
+  -- cmp
+  use("hrsh7th/cmp-nvim-lsp")
+  use("hrsh7th/cmp-buffer")
+  use("hrsh7th/cmp-path")
+  use("hrsh7th/cmp-cmdline")
   use({
-    "neovim/nvim-lspconfig",
+    "hrsh7th/nvim-cmp",
     config = function()
-      local luadev = require("lua-dev")
+      local cmp = require("cmp")
+      cmp.setup({
+        mapping = {},
+        sources = cmp.config.sources({
+          { name = "nvim_lsp" },
+          { name = "buffer" },
+          { name = "path" },
+        }),
+      })
+      cmp.setup.cmdline("/", { sources = { name = "buffer" } })
+      cmp.setup.cmdline(":", {
+        sources = cmp.config.sources({
+          { name = "path" },
+          { name = "cmdline" },
+        }),
+      })
+
+      local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
       local lspconfig = require("lspconfig")
+      local luadev = require("lua-dev")
 
       -- Use an on_attach function to only map the following keys
       -- after the language server attaches to the current buffer
@@ -130,8 +156,24 @@ return packer.startup(function(use)
           lspconfig = {
             on_attach = on_attach,
           },
+          capabilities = capabilities,
         })
       )
+      lspconfig.clangd.setup({
+        on_attach = on_attach,
+        debounce_text_changes = 150,
+        capabilities = capabilities,
+      })
+      lspconfig.cmake.setup({
+        on_attach = on_attach,
+        debounce_text_changes = 150,
+        capabilities = capabilities,
+      })
+      lspconfig.tsserver.setup({
+        on_attach = on_attach,
+        debounce_text_changes = 150,
+        capabilities = capabilities,
+      })
 
       -- Use a loop to conveniently call "setup" on multiple servers and
       -- map buffer local keybindings when the language server attaches
@@ -146,37 +188,7 @@ return packer.startup(function(use)
       -- end
     end
   })
-  use("folke/lua-dev.nvim")
 
-  -- cmp
-  use("hrsh7th/cmp-nvim-lsp")
-  use("hrsh7th/cmp-buffer")
-  use("hrsh7th/cmp-path")
-  use("hrsh7th/cmp-cmdline")
-  use({
-    "hrsh7th/nvim-cmp",
-    config = function()
-      local cmp = require("cmp")
-      cmp.setup({
-        mapping = {},
-        sources = cmp.config.sources({
-          { name = "nvim_lsp" },
-          { name = "buffer" },
-          { name = "path" },
-        }),
-      })
-      cmp.setup.cmdline("/", { sources = { name = "buffer" } })
-      cmp.setup.cmdline(":", {
-        sources = cmp.config.sources({
-          { name = "path" },
-          { name = "cmdline" },
-        }),
-      })
-
-      local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-      require("lspconfig").sumneko_lua.setup({ capabilities = capabilities })
-    end
-  })
 
   if PACKER_BOOSTRAP then
     require("packer").sync()
