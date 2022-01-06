@@ -189,6 +189,7 @@ return packer.startup(function(use)
     end
   })
 
+  use("sgur/vim-editorconfig")
 
   if PACKER_BOOSTRAP then
     require("packer").sync()
