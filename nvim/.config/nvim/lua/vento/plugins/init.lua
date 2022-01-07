@@ -81,7 +81,10 @@ return packer.startup(function(use)
     requires = { "rktjmp/lush.nvim" },
     config = function()
       vim.opt.background = "dark"
-      vim.cmd([[colorscheme gruvbox]])
+      vim.cmd([[
+        colorscheme gruvbox
+        hi Normal ctermbg=NONE guibg=NONE
+      ]])
     end,
   })
 
