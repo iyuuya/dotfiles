@@ -85,6 +85,14 @@ return packer.startup(function(use)
     end,
   })
 
+  use({
+    "crispgm/nvim-go",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-lua/popup.nvim",
+    }
+  })
+
   -- LSP
   use("neovim/nvim-lspconfig")
   use("folke/lua-dev.nvim")
@@ -170,6 +178,19 @@ return packer.startup(function(use)
         capabilities = capabilities,
       })
       lspconfig.tsserver.setup({
+        on_attach = on_attach,
+        debounce_text_changes = 150,
+        capabilities = capabilities,
+      })
+
+      require("go").setup({})
+
+      lspconfig.golangci_lint_ls.setup({
+        on_attach = on_attach,
+        debounce_text_changes = 150,
+        capabilities = capabilities,
+      })
+      lspconfig.gopls.setup({
         on_attach = on_attach,
         debounce_text_changes = 150,
         capabilities = capabilities,

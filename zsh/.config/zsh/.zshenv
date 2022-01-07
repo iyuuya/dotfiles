@@ -2,6 +2,7 @@ unsetopt GLOBAL_RCS
 export ZDOTDIR="$HOME/.config/zsh"
 
 path=(
+  $HOME/go/bin(N-/)
   /usr/local/bin(N-/)
   /usr/bin(N-/)
   /bin(N-/)
