@@ -215,6 +215,23 @@ return packer.startup(function(use)
 
   use("sgur/vim-editorconfig")
 
+  use({
+    "kevinhwang91/rnvimr",
+    config = function()
+      vim.g.rnvimr_enable_ex = 1
+      vim.g.rnvimr_enable_picker = 1
+      vim.g.rnvimr_draw_border = 1
+      vim.g.rnvimr_hide_gitignore = 1
+      vim.cmd([[
+        let g:rnvimr_action = {
+            \ '<C-t>': 'NvimEdit tabedit',
+            \ '<C-x>': 'NvimEdit split',
+            \ '<C-v>': 'NvimEdit vsplit',
+            \ }
+      ]])
+    end
+  })
+
   if PACKER_BOOSTRAP then
     require("packer").sync()
   end
