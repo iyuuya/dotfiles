@@ -5,3 +5,4 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.foldlevelstart = 99
 vim.opt.termguicolors = true
+vim.opt.showtabline = 2
