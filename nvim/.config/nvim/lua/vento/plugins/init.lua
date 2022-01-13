@@ -185,6 +185,16 @@ return packer.startup(function(use)
         debounce_text_changes = 150,
         capabilities = capabilities,
       })
+      lspconfig.rls.setup({
+        on_attach = on_attach,
+        debounce_text_changes = 150,
+        capabilities = capabilities,
+      })
+      lspconfig.rust_analyzer.setup({
+        on_attach = on_attach,
+        debounce_text_changes = 150,
+        capabilities = capabilities,
+      })
 
       require("go").setup({})
 
