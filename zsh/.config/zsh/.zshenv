@@ -1,6 +1,8 @@
 unsetopt GLOBAL_RCS
 export ZDOTDIR="$HOME/.config/zsh"
 
+export EDITOR=nvim
+
 path=(
   $HOME/go/bin(N-/)
   /usr/local/bin(N-/)
