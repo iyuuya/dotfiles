@@ -15,5 +15,4 @@ path=(
 )
 
 source "$HOME/.cargo/env"
-
-export GPG_TTY=$(tty)
+source $HOME/.asdf/asdf.sh

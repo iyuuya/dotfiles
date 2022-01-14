@@ -1,4 +1,4 @@
-source $HOME/.asdf/asdf.sh
+export GPG_TTY=$(tty)
 
 function ghq-cd() {
   cd $(ghq list --full-path | sk)
