@@ -4,6 +4,17 @@ function ghq-cd() {
   cd $(ghq list --full-path | sk)
 }
 
+function sw() {
+  if [ "$#" -ne 1 ]; then
+    echo "sw: USER"
+    return 1
+  fi
+
+  local user=$1
+  ln -sf ~/.ssh/$user ~/.ssh/config
+  ln -sf ~/.config/git/$user ~/.config/git/local
+}
+
 alias ls=exa
 alias la="ls -a"
 alias ll="ls -l"
