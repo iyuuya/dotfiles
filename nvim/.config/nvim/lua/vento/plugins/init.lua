@@ -242,6 +242,8 @@ return packer.startup(function(use)
     end
   })
 
+  use("wakatime/vim-wakatime")
+
   if PACKER_BOOSTRAP then
     require("packer").sync()
   end
