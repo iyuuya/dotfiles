@@ -5,5 +5,7 @@ if [ -d $HOME/.asdf ]; then
   
   gem install neovim
   npm i -g neovim
-  pip install pynvim
+  pip install --upgrade pip
+  pip install pynvim ranger-fm cmake-language-server
+  asdf reshim python
 fi
