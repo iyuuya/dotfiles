@@ -11,3 +11,4 @@ sh $SCRIPT_DIR/rust.sh
 sh $SCRIPT_DIR/alacritty.sh
 sh $SCRIPT_DIR/asdf.sh
 sh $SCRIPT_DIR/neovim.sh
+sh $SCRIPT_DIR/tmuxinator.sh
