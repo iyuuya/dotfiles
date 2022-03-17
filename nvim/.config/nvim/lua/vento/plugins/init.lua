@@ -76,16 +76,24 @@ return packer.startup(function(use)
   use("nvim-treesitter/nvim-treesitter-textobjects")
 
   -- Colorscheme
+  -- use({
+  --   "ellisonleao/gruvbox.nvim",
+  --   requires = { "rktjmp/lush.nvim" },
+  --   config = function()
+  --     vim.opt.background = "dark"
+  --     vim.cmd([[
+  --       colorscheme gruvbox
+  --       hi Normal ctermbg=NONE guibg=NONE
+  --     ]])
+  --   end,
+  -- })
   use({
-    "ellisonleao/gruvbox.nvim",
-    requires = { "rktjmp/lush.nvim" },
+    "EdenEast/nightfox.nvim",
     config = function()
-      vim.opt.background = "dark"
       vim.cmd([[
-        colorscheme gruvbox
-        hi Normal ctermbg=NONE guibg=NONE
+        colorscheme nightfox
       ]])
-    end,
+    end
   })
 
   use({
