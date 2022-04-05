@@ -108,6 +108,18 @@ return packer.startup(function(use)
   use("neovim/nvim-lspconfig")
   use("folke/lua-dev.nvim")
 
+  -- Snippet
+  use({
+    "L3MON4D3/LuaSnip",
+    requires = { "rafamadriz/friendly-snippets" },
+    config = function()
+      require("luasnip.loaders.from_vscode").lazy_load()
+
+      vim.cmd([[imap <silent><expr> <C-k> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<C-k>']])
+      vim.cmd([[smap <silent><expr> <C-k> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<C-k>']])
+    end,
+  })
+
   -- cmp
   use("hrsh7th/cmp-nvim-lsp")
   use("hrsh7th/cmp-buffer")
@@ -116,9 +128,35 @@ return packer.startup(function(use)
   use({
     "hrsh7th/nvim-cmp",
     config = function()
+      local has_words_before = function()
+        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+      end
       local cmp = require("cmp")
+      local luasnip = require("luasnip")
       cmp.setup({
-        mapping = {},
+        mapping = {
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+            cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+              luasnip.expand_or_jump()
+            elseif has_words_before() then
+              cmp.complete()
+            else
+              fallback()
+            end
+          end, {"i", "s"}),
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+            cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+              luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end, {"i", "s"}),
+        },
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
           { name = "buffer" },
