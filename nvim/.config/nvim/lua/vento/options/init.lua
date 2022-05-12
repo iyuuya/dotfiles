@@ -7,3 +7,5 @@ vim.opt.foldlevelstart = 99
 vim.opt.termguicolors = true
 vim.opt.showtabline = 2
 vim.opt.clipboard = "unnamed"
+
+vim.opt.guifont = "SauceCodePro Nerd Font:h11"
