@@ -294,6 +294,12 @@ return packer.startup(function(use)
     end
   })
 
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = "cd app && yarn install",
+    cmd = "MarkdownPreview"
+  })
+
   use("wakatime/vim-wakatime")
 
   if PACKER_BOOSTRAP then
