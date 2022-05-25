@@ -95,6 +95,19 @@ return packer.startup(function(use)
       ]])
     end
   })
+  use('mhinz/vim-startify')
+  use('DanilaMihailov/beacon.nvim')
+  use({
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  })
+  use('Yggdroot/indentLine')
+  use({'windwp/nvim-autopairs',
+    config =function()
+      require('nvim-autopairs').setup{}
+    end,
+  })
+  use('voldikss/vim-floaterm')
 
   use({
     "crispgm/nvim-go",
@@ -138,7 +151,7 @@ return packer.startup(function(use)
         mapping = {
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
-            cmp.select_next_item()
+              cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
             elseif has_words_before() then
@@ -146,16 +159,16 @@ return packer.startup(function(use)
             else
               fallback()
             end
-          end, {"i", "s"}),
+          end, { "i", "s" }),
           ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
-            cmp.select_prev_item()
+              cmp.select_prev_item()
             elseif luasnip.jumpable(-1) then
               luasnip.jump(-1)
             else
               fallback()
             end
-          end, {"i", "s"}),
+          end, { "i", "s" }),
         },
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
@@ -179,13 +192,14 @@ return packer.startup(function(use)
       -- after the language server attaches to the current buffer
       local on_attach = function(client, bufnr)
         local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+
         local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
         -- Enable completion triggered by <c-x><c-o>
         buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
         -- Mappings.
-        local opts = { noremap=true, silent=true }
+        local opts = { noremap = true, silent = true }
 
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
@@ -291,6 +305,13 @@ return packer.startup(function(use)
             \ '<C-v>': 'NvimEdit vsplit',
             \ }
       ]])
+    end
+  })
+  use({
+    'kyazdani42/nvim-tree.lua',
+    requires = { 'kyazdani42/nvim-web-devicons' },
+    config = function()
+      require('nvim-tree').setup{}
     end
   })
 
