@@ -261,11 +261,11 @@ return packer.startup(function(use)
 
       require("go").setup({})
 
-      lspconfig.golangci_lint_ls.setup({
-        on_attach = on_attach,
-        debounce_text_changes = 150,
-        capabilities = capabilities,
-      })
+      --lspconfig.golangci_lint_ls.setup({
+      --  on_attach = on_attach,
+      --  debounce_text_changes = 150,
+      --  capabilities = capabilities,
+      --})
       lspconfig.gopls.setup({
         on_attach = on_attach,
         debounce_text_changes = 150,
