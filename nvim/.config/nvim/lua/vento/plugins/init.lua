@@ -324,6 +324,8 @@ return packer.startup(function(use)
     cmd = "MarkdownPreview"
   })
 
+  use("tpope/vim-abolish")
+
   use("wakatime/vim-wakatime")
 
   if PACKER_BOOSTRAP then
