@@ -328,6 +328,8 @@ return packer.startup(function(use)
 
   use("wakatime/vim-wakatime")
 
+  use("tpope/vim-rails")
+
   if PACKER_BOOSTRAP then
     require("packer").sync()
   end
