@@ -278,6 +278,18 @@ return packer.startup(function(use)
         capabilities = capabilities,
       })
 
+      lspconfig.dockerls.setup({
+        on_attach = on_attach,
+        debounce_text_changes = 150,
+        capabilities = capabilities,
+      })
+
+      lspconfig.yamlls.setup({
+        on_attach = on_attach,
+        debounce_text_changes = 150,
+        capabilities = capabilities,
+      })
+
       -- Use a loop to conveniently call "setup" on multiple servers and
       -- map buffer local keybindings when the language server attaches
       -- local servers = { "rust_analyzer", "tsserver" }
