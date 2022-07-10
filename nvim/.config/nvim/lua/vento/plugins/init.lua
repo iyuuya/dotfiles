@@ -332,8 +332,12 @@ return packer.startup(function(use)
 
   use({
     "iamcco/markdown-preview.nvim",
-    run = "cd app && yarn install",
-    cmd = "MarkdownPreview"
+    run = "cd app && npm install",
+    setup = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+      vim.g.mkdp_auto_start = true
+    end,
+    ft = { "markdown" }
   })
 
   use("tpope/vim-abolish")
