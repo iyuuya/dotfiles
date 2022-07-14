@@ -15,6 +15,8 @@ function sw() {
   ln -sf ~/.config/git/$user ~/.config/git/local
 }
 
+eval "$(direnv hook zsh)"
+
 alias ls=exa
 alias la="ls -a"
 alias ll="ls -l"
