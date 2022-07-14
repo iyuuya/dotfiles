@@ -74,6 +74,50 @@ return packer.startup(function(use)
     end,
   })
   use("nvim-treesitter/nvim-treesitter-textobjects")
+  use({
+    "nvim-treesitter/nvim-treesitter-context",
+    config = function()
+      require("treesitter-context").setup({
+        enable = true,
+        trim_scope = "outer",
+        patterns = {
+          default = {
+            "class",
+            "function",
+            "method",
+          }
+        },
+        zindex = 20,
+        mode = "cursor", -- or "topline"
+      })
+    end
+  })
+  use({
+    "nvim-treesitter/nvim-treesitter-refactor",
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        refactor = {
+          highlight_current_scope = { enable = false },
+          smart_rename = {
+            enable = true,
+            keymaps = {
+              smart_rename = "grr",
+            }
+          },
+          navigation = {
+            enable = true,
+            keymaps = {
+              goto_definition = "gnd",
+              list_definitions = "gnD",
+              list_definitions_toc = "gO",
+              goto_next_usage = "<a-*>",
+              goto_previous_usage = "<a-#>",
+            }
+          }
+        }
+      })
+    end
+  })
 
   -- Colorscheme
   -- use({
