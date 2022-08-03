@@ -383,6 +383,7 @@ return packer.startup(function(use)
     end,
     ft = { "markdown" }
   })
+  use("tokorom/vim-review")
 
   use("tpope/vim-abolish")
 
