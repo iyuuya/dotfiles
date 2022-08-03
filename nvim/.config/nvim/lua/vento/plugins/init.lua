@@ -379,7 +379,7 @@ return packer.startup(function(use)
     run = "cd app && npm install",
     setup = function()
       vim.g.mkdp_filetypes = { "markdown" }
-      vim.g.mkdp_auto_start = true
+      vim.g.mkdp_auto_start = false
     end,
     ft = { "markdown" }
   })
