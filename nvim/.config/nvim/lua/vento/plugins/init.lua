@@ -391,6 +391,8 @@ return packer.startup(function(use)
 
   use("tpope/vim-rails")
 
+  use("jamestthompson3/nvim-remote-containers")
+
   if PACKER_BOOSTRAP then
     require("packer").sync()
   end
