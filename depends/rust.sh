@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 if [ ! -d $HOME/.cargo ]; then
   echo "==> Install rustup"

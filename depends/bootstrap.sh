@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 SCRIPT_DIR="$(cd $(dirname $0); pwd)"
 cd $SCRIPT_DIR
@@ -14,8 +14,8 @@ elif [[ $(uname -a) == *"Debian"* ]]; then
   sudo rm -rf /var/lib/apt/lists/*
 fi
 
-sh $SCRIPT_DIR/rust.sh
-sh $SCRIPT_DIR/alacritty.sh
-sh $SCRIPT_DIR/asdf.sh
-sh $SCRIPT_DIR/neovim.sh
-sh $SCRIPT_DIR/tmuxinator.sh
+zsh $SCRIPT_DIR/rust.sh
+zsh $SCRIPT_DIR/alacritty.sh
+zsh $SCRIPT_DIR/asdf.sh
+zsh $SCRIPT_DIR/neovim.sh
+zsh $SCRIPT_DIR/tmuxinator.sh

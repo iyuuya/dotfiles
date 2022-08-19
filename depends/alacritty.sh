@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 if [[ $OSTYPE == "darwin"* ]]; then
   if [ ! -d /Applications/Alacritty.app ]; then
