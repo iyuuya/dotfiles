@@ -240,7 +240,7 @@ return packer.startup(function(use)
         }),
       })
 
-      local capabilities = require("cmp").default_capabilities()
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local lspconfig = require("lspconfig")
       local luadev = require("neodev")
 
