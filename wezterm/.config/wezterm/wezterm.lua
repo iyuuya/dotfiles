@@ -2,8 +2,8 @@ local wezterm = require("wezterm")
 
 return {
   color_scheme = "iceberg-dark",
-  font = wezterm.font("PixelMplus12"),
-  font_size = 16.0,
+  font = wezterm.font("SauceCodePro Nerd Font"),
+  font_size = 12.0,
   initial_cols = 160,
   initial_rows = 40,
   keys = {
