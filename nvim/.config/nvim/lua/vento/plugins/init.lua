@@ -139,19 +139,28 @@ return packer.startup(function(use)
       ]])
     end
   })
+  use({
+    "xiyaowong/nvim-transparent",
+    config = function()
+      require('transparent').setup({
+        enable = true
+      })
+    end
+  })
+
   use('mhinz/vim-startify')
   use('DanilaMihailov/beacon.nvim')
   use({
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function()
-      require('lualine').setup{}
+      require('lualine').setup {}
     end,
   })
   use('Yggdroot/indentLine')
-  use({'windwp/nvim-autopairs',
-    config =function()
-      require('nvim-autopairs').setup{}
+  use({ 'windwp/nvim-autopairs',
+    config = function()
+      require('nvim-autopairs').setup {}
     end,
   })
   use('voldikss/vim-floaterm')
@@ -166,7 +175,7 @@ return packer.startup(function(use)
 
   -- LSP
   use("neovim/nvim-lspconfig")
-  use("folke/lua-dev.nvim")
+  use("folke/neodev.nvim")
 
   -- Snippet
   use({
@@ -231,9 +240,9 @@ return packer.startup(function(use)
         }),
       })
 
-      local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+      local capabilities = require("cmp").default_capabilities()
       local lspconfig = require("lspconfig")
-      local luadev = require("lua-dev")
+      local luadev = require("neodev")
 
       -- Use an on_attach function to only map the following keys
       -- after the language server attaches to the current buffer
@@ -268,15 +277,18 @@ return packer.startup(function(use)
         buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
       end
 
-      lspconfig.sumneko_lua.setup(
-        luadev.setup({
-          runtime_path = true,
-          lspconfig = {
-            on_attach = on_attach,
-          },
-          capabilities = capabilities,
-        })
-      )
+      lspconfig.sumneko_lua.setup({
+        settings = {
+          Lua = {
+            completaion = {
+              callSnippet = "Replace"
+            }
+          }
+        },
+        runtime_path = true,
+        on_attach = on_attach,
+        capabilities = capabilities,
+      })
       lspconfig.clangd.setup({
         on_attach = on_attach,
         debounce_text_changes = 150,
@@ -334,6 +346,12 @@ return packer.startup(function(use)
         capabilities = capabilities,
       })
 
+      lspconfig.pylsp.setup({
+        on_attach = on_attach,
+        debounce_text_changes = 150,
+        capabilities = capabilities,
+      })
+
       -- Use a loop to conveniently call "setup" on multiple servers and
       -- map buffer local keybindings when the language server attaches
       -- local servers = { "rust_analyzer", "tsserver" }
@@ -370,7 +388,7 @@ return packer.startup(function(use)
     'kyazdani42/nvim-tree.lua',
     requires = { 'kyazdani42/nvim-web-devicons' },
     config = function()
-      require('nvim-tree').setup{}
+      require('nvim-tree').setup {}
     end
   })
 
@@ -391,7 +409,26 @@ return packer.startup(function(use)
 
   use("tpope/vim-rails")
 
-  use("jamestthompson3/nvim-remote-containers")
+  -- use("jamestthompson3/nvim-remote-containers")
+  use({
+    'esensar/nvim-dev-container',
+    requires = { 'nvim-treesitter/nvim-treesitter' },
+    config = function()
+      require('devcontainer').setup {
+        attach_mounts = {
+          neovim_config = {
+            enabled = true
+          },
+          neovim_data = {
+            enabled = true
+          },
+          neovim_state = {
+            enabled = true
+          }
+        }
+      }
+    end
+  })
 
   if PACKER_BOOSTRAP then
     require("packer").sync()
