@@ -31,3 +31,8 @@ alias g=git
 alias gs='git status'
 alias ga='git add'
 alias gcm='git commit -m'
+
+alias less='/usr/share/vim/vim90/macros/less.sh'
+
+autoload -U compinit
+compinit -i
