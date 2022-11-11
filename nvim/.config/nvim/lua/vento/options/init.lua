@@ -12,3 +12,5 @@ vim.opt.laststatus = 3
 vim.opt.guifont = "SauceCodePro Nerd Font:h11"
 
 vim.cmd[[autocmd BufRead,BufNewFile Schemafile set filetype=ruby]]
+
+vim.g.mapleader = ","
