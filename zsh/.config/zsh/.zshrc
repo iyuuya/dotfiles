@@ -36,3 +36,7 @@ alias less='/usr/share/vim/vim90/macros/less.sh'
 
 autoload -U compinit
 compinit -i
+
+PROMPT='%F{green}%n%F{yellow}@%F{red}%M%f - %D %*
+$ '
+RPROMPT='[%~]'
