@@ -254,7 +254,7 @@ return packer.startup(function(use)
 
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local lspconfig = require("lspconfig")
-      local luadev = require("neodev")
+      local luadev = require("neodev").setup({})
 
       -- Use an on_attach function to only map the following keys
       -- after the language server attaches to the current buffer
