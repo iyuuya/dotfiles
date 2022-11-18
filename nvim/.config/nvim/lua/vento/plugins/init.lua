@@ -39,6 +39,8 @@ return packer.startup(function(use)
     end,
   })
 
+  use({ "kchmck/vim-coffee-script" })
+
   -- Treesitter
   use({
     "nvim-treesitter/nvim-treesitter",
