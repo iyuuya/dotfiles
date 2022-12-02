@@ -4,6 +4,12 @@ function ghq-cd() {
   cd $(ghq list --full-path | sk)
 }
 
+function gw-cd() {
+  worktrees=$(git worktree list) &&
+  worktree=$(echo $worktrees | fzf +m) &&
+  cd $(echo "$worktree" | awk '{print $1}')
+}
+
 function sw() {
   if [ "$#" -ne 1 ]; then
     echo "sw: USER"
