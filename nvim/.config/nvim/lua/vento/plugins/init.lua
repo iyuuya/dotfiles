@@ -26,6 +26,8 @@ return packer.startup(function(use)
   -- FuzzyFinder
   use("lotabout/skim")
   use("lotabout/skim.vim")
+  use("junegunn/fzf")
+  use("junegunn/fzf.vim")
   use({
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
