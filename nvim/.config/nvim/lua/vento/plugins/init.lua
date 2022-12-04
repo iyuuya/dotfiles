@@ -55,6 +55,11 @@ return packer.startup(function(use)
           enable = true,
           additonal_vim_regex_highlighting = true,
         },
+        hidesig = {
+          enable = true,
+          opacity = 0.75,
+          delay = 200,
+        },
         incremental_selection = {
           enable = true,
           keymaps = {
@@ -134,6 +139,8 @@ return packer.startup(function(use)
       })
     end
   })
+  use({"omnisyle/nvim-hidesig"})
+  use({"pocke/rbs.vim"})
 
   -- Colorscheme
   -- use({
