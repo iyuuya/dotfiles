@@ -4,6 +4,10 @@ function ghq-cd() {
   cd $(ghq list --full-path | sk)
 }
 
+function ghq-update-all() {
+  ghq get -u -p $(ghq list)
+}
+
 function gw-cd() {
   worktrees=$(git worktree list) &&
   worktree=$(echo $worktrees | fzf +m) &&
