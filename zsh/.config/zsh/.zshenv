@@ -16,5 +16,12 @@ path=(
   $path
 )
 
-source "$HOME/.cargo/env"
-source $HOME/.asdf/asdf.sh
+if test -f $HOME/.cargo/env; then
+  source "$HOME/.cargo/env"
+fi
+if test -f $HOME/.asdf/asdf.sh; then
+ source $HOME/.asdf/asdf.sh
+fi
+if test -f $HOME/.tok2/profile; then
+  source "$HOME/.tok2/profile"
+fi
