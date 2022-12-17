@@ -4,6 +4,7 @@ export ZDOTDIR="$HOME/.config/zsh"
 export EDITOR=nvim
 
 path=(
+  $HOME/.local/bin(N-/)
   $HOME/go/bin(N-/)
   /opt/homebrew/bin(N-/)
   /opt/homebrew/sbin(N-/)

@@ -1,0 +1,51 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+
+if ARGV.size != 1
+  warn 'usage: switch-ruby VERSION'
+  exit 1
+end
+
+def detect_rbenv
+  paths = ENV['PATH'].split(File::PATH_SEPARATOR)
+  paths.each do |path|
+    exe = File.join(path, 'rbenv')
+    return exe if File.executable?(exe)
+  end
+  nil
+end
+
+def detect_gemfile(version)
+  path = File.join(Dir.pwd, "Gemfile.#{version}")
+  return path if File.exist?(path)
+  nil
+end
+
+def detect_gemfile_lock(version)
+  path = File.join(Dir.pwd, "Gemfile.#{version}.lock")
+  return path if File.exist?(path)
+
+  nil
+end
+
+def detect_rubocop_yml(version)
+  path = File.join(Dir.pwd, ".rubocop.#{version}.yml")
+  return path if File.exist?(path)
+
+  nil
+end
+
+def main(version)
+  rbenv_path = detect_rbenv
+  gemfile_path = detect_gemfile(version)
+  gemfile_lock_path = detect_gemfile_lock(version)
+  rubocop_yml_path = detect_rubocop_yml(version)
+
+  system("rbenv local #{version}") if rbenv_path && File.exist?('.ruby-version')
+  FileUtils.ln_s("Gemfile.#{version}", 'Gemfile', force: true) if gemfile_path
+  FileUtils.ln_s("Gemfile.#{version}.lock", 'Gemfile.lock', force: true) if gemfile_lock_path
+  FileUtils.ln_s(".rubocop.#{version}.yml", '.rubocop.yml', force: true) if rubocop_yml_path
+end
+
+main(ARGV[0])
