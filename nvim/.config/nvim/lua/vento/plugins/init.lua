@@ -41,7 +41,9 @@ return packer.startup(function(use)
     end,
   })
 
-  use({ "kchmck/vim-coffee-script" })
+  use("kchmck/vim-coffee-script")
+
+  use("lambdalisue/readablefold.vim")
 
   -- Treesitter
   use({
@@ -139,8 +141,8 @@ return packer.startup(function(use)
       })
     end
   })
-  use({"omnisyle/nvim-hidesig"})
-  use({"pocke/rbs.vim"})
+  use("omnisyle/nvim-hidesig")
+  use("pocke/rbs.vim")
 
   -- Colorscheme
   -- use({
