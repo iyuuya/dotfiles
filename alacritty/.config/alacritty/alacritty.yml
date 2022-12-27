@@ -728,5 +728,7 @@ key_bindings:
   #print_events: false
 
 import:
-  - ~/.config/alacritty/themes/nightfox.yml
-# - ~/.config/alacritty/themes/gruvbox_dark.yml
+# - ~/.config/alacritty/themes/themes/tomorrow_night_bright.yaml
+# - ~/.config/alacritty/themes/themes/gruvbox_material.yaml
+# - ~/.config/alacritty/themes/themes/wombat.yaml
+  - ~/.config/alacritty/themes/themes/nightfox.yaml
