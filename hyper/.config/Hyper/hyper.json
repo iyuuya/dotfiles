@@ -63,8 +63,8 @@
     "preserveCWD": true,
     "screenReaderMode": false,
     "hyperTransparent": {
-  "backgroundColor": "#000",
-      "opacity": "0.4",
+      "backgroundColor": "#000",
+      "opacity": "0.5",
       "vibrancy": "ultra-dark"
     }
   },
