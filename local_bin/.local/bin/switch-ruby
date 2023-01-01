@@ -19,6 +19,7 @@ end
 def detect_gemfile(version)
   path = File.join(Dir.pwd, "Gemfile.#{version}")
   return path if File.exist?(path)
+
   nil
 end
 
