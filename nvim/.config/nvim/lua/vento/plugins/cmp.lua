@@ -28,10 +28,6 @@ local mycmp = {
         require("fidget").setup({})
       end
     })
-    use({
-      "SmiteshP/nvim-navic",
-      requries = "neovim/nvim-lspconfig"
-    })
 
     use({
       "jose-elias-alvarez/null-ls.nvim",
@@ -51,7 +47,9 @@ local mycmp = {
             null_ls.builtins.formatting.rubocop,
             null_ls.builtins.diagnostics.rubocop,
 
-            null_ls.builtins.code_actions.gitsigns
+            null_ls.builtins.code_actions.gitsigns,
+
+            null_ls.builtins.formatting.rustfmt,
           },
           on_attach = function(client, bufnr)
             vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
