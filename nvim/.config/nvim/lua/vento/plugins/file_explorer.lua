@@ -1,4 +1,4 @@
-local filer = {
+local file_explorer = {
   setup = function(use)
     use({
       "kevinhwang91/rnvimr",
@@ -26,4 +26,4 @@ local filer = {
   end
 }
 
-return filer
+return file_explorer

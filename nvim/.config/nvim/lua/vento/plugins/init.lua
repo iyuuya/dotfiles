@@ -20,7 +20,7 @@ return require("packer").startup(function(use)
   require("vento/plugins/filetype").setup(use)
   require("vento/plugins/colorscheme").setup(use)
   require("vento/plugins/treesitter").setup(use)
-  require("vento/plugins/filer").setup(use)
+  require("vento/plugins/file_explorer").setup(use)
   require("vento/plugins/cmp").setup(use)
   require("vento/plugins/dev").setup(use)
 
