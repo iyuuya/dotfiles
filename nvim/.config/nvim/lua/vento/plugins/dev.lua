@@ -1,4 +1,4 @@
-local dev= {
+local dev = {
   setup = function(use)
     use("lambdalisue/readablefold.vim")
 
@@ -11,12 +11,11 @@ local dev= {
         require('lualine').setup {}
       end,
     })
-    use('Yggdroot/indentLine')
-    use({ 'windwp/nvim-autopairs',
-      config = function()
-        require('nvim-autopairs').setup {}
-      end,
+    use({
+      "SmiteshP/nvim-navic",
+      requries = "neovim/nvim-lspconfig"
     })
+    use('Yggdroot/indentLine')
     use('voldikss/vim-floaterm')
 
     -- Snippet
@@ -53,6 +52,151 @@ local dev= {
             }
           }
         }
+      end
+    })
+
+
+    use("rcarriga/nvim-notify")
+
+    -- highlight
+    use({
+      "RRethy/vim-illuminate",
+      config = function()
+        require("illuminate").configure({
+          providers = {
+            "lsp",
+            "treesitter",
+            "regex",
+          },
+          delay = 100,
+        })
+      end
+    })
+    use({
+      "norcalli/nvim-colorizer.lua",
+      config = function()
+        require("colorizer").setup()
+      end
+    })
+    use({
+      "t9md/vim-quickhl",
+      config = function()
+        vim.keymap.set("n", "<leader>m", "<Plug>(quickhl-manual-this)", {})
+        vim.keymap.set("x", "<leader>m", "<Plug>(quickhl-manual-this)", {})
+        vim.keymap.set("n", "<leader>M", "<Plug>(quickhl-manual-reset)", {})
+        vim.keymap.set("x", "<leader>M", "<Plug>(quickhl-manual-reset)", {})
+      end
+    })
+    use({
+      "folke/todo-comments.nvim",
+      config = function()
+        require("todo-comments").setup({})
+      end
+    })
+
+    -- scrollbar
+    use({
+      "kevinhwang91/nvim-hlslens",
+      config = function()
+        require("hlslens").setup({
+          build_position_cb = function(plist, _, _, _)
+            require("scrollbar.handlers.search").handler.show(plist.start_pos)
+          end
+        })
+
+        -- TODO: nvim_create_augroup
+        -- TODO: nvim_create_autocmd
+        vim.cmd [[
+        augroup scrollbar_search_hide
+          autocmd!
+          autocmd CmdlineLeave : lua require("scrollbar.handlers.search").handler.hide()
+        augroup END
+      ]]
+      end
+    })
+    use({
+      "petertriho/nvim-scrollbar",
+      requires = { "lewis6991/gitsigns.nvim", "kevinhwang91/nvim-hlslens" },
+      config = function()
+        require("scrollbar").setup()
+      end
+    })
+    use({
+      "lewis6991/gitsigns.nvim",
+      config = function()
+        require("gitsigns").setup()
+        require("scrollbar.handlers.gitsigns").setup()
+      end
+    })
+
+    -- align
+    use({
+      "junegunn/vim-easy-align",
+      config = function()
+        vim.keymap.set("n", "<leader>ga", "<Plug>(EasyAlign)", {})
+        vim.keymap.set("x", "<leader>ga", "<Plug>(EasyAlign)", {})
+      end
+    })
+
+    -- show key map
+    use({
+      "folke/which-key.nvim",
+      config = function()
+        require("which-key").setup({})
+      end
+    })
+
+    -- mkdir
+    use("jghauser/mkdir.nvim")
+
+    -- terminal
+    use({
+      "akinsho/toggleterm.nvim",
+      config = function()
+        require("toggleterm").setup()
+      end
+    })
+
+    -- comment
+    use({
+      "numToStr/Comment.nvim",
+      config = function()
+        require("Comment").setup()
+      end
+    })
+    use("LudoPinelli/comment-box.nvim")
+
+    -- match / pair
+    use({
+      "andymass/vim-matchup",
+      setup = function()
+        vim.g.matchup_matchparen_offscreen = { method = "popup" }
+      end
+    })
+    use({
+      "windwp/nvim-autopairs",
+      config = function()
+        require("nvim-autopairs").setup({})
+      end
+    })
+    use({
+      "windwp/nvim-ts-autotag",
+      config = function()
+        require("nvim-ts-autotag").setup()
+      end
+    })
+
+    -- outline
+    use({
+      "stevearc/aerial.nvim",
+      config = function()
+        require("aerial").setup({
+          on_attach = function(bufnr)
+            vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
+            vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
+            vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle<CR>", { buffer = bufnr })
+          end
+        })
       end
     })
   end

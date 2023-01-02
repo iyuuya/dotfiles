@@ -3,11 +3,98 @@ local mycmp = {
     -- LSP
     use("neovim/nvim-lspconfig")
     use("folke/neodev.nvim")
+    use({
+      "kkharji/lspsaga.nvim",
+      config = function()
+        require("lspsaga").setup({})
+      end
+    })
+    use({
+      "folke/lsp-colors.nvim",
+      config = function()
+        require("lsp-colors").setup({})
+      end
+    })
+    use({
+      "folke/trouble.nvim",
+      requires = "nvim-tree/nvim-web-devicons",
+      config = function()
+        require("trouble").setup({})
+      end
+    })
+    use({
+      "j-hui/fidget.nvim",
+      config = function()
+        require("fidget").setup({})
+      end
+    })
+    use({
+      "SmiteshP/nvim-navic",
+      requries = "neovim/nvim-lspconfig"
+    })
+
+    use({
+      "jose-elias-alvarez/null-ls.nvim",
+      config = function()
+        local null_ls = require("null-ls")
+        local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+        null_ls.setup({
+          -- TODO: https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
+          sources = {
+            null_ls.builtins.formatting.stylua,
+
+            null_ls.builtins.code_actions.eslint,
+            null_ls.builtins.diagnostics.eslint,
+            null_ls.builtins.formatting.eslint,
+
+            null_ls.builtins.formatting.rubocop,
+            null_ls.builtins.diagnostics.rubocop,
+
+            null_ls.builtins.code_actions.gitsigns
+          },
+          on_attach = function(client, bufnr)
+            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              group = augroup,
+              buffer = bufnr,
+              callback = function()
+                vim.lsp.buf.format({
+                  bufnr = bufnr,
+                  filter = function(client)
+                    return client.name == "null-ls"
+                  end
+                })
+              end
+            })
+          end
+        })
+        -- vim.keymap.set("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format()<CR>", {})
+      end
+    })
 
     use("hrsh7th/cmp-nvim-lsp")
     use("hrsh7th/cmp-buffer")
     use("hrsh7th/cmp-path")
     use("hrsh7th/cmp-cmdline")
+    use("hrsh7th/cmp-nvim-lsp-signature-help")
+    use("hrsh7th/cmp-nvim-lsp-document-symbol")
+    use("hrsh7th/cmp-nvim-lua")
+    use("hrsh7th/cmp-emoji")
+    use("hrsh7th/cmp-calc")
+    use("f3fora/cmp-spell")
+    use({
+      "yutkat/cmp-mocword",
+      requires = "nvim-lua/plenary.nvim",
+    })
+    use("uga-rosa/cmp-dictionary")
+    use({
+      "saadparwaiz1/cmp_luasnip",
+      requires = "L3MON4D3/LuaSnip",
+    })
+    use("ray-x/cmp-treesitter")
+    use("onsails/lspkind.nvim")
+
     use({
       "hrsh7th/nvim-cmp",
       config = function()
@@ -17,9 +104,40 @@ local mycmp = {
         end
         local cmp = require("cmp")
         local luasnip = require("luasnip")
+        local lspkind = require("lspkind")
+        local navic = require("nvim-navic")
+
+        local cmp_sources = {
+          { name = "nvim_lsp" },
+          { name = "nvim_lsp_signature_help" },
+          { name = "treesitter" },
+          { name = "buffer" },
+          { name = "nvim_lua" },
+          { name = "path" },
+          { name = "cmdline" },
+          { name = "calc" },
+          { name = "dictionary", keyword_length = 2 },
+          {
+            name = "spell",
+            option = {
+              keep_all_entries = false,
+              enable_in_context = function()
+                return true
+              end
+            }
+          },
+          { name = "emoji" },
+          { name = "mocword" },
+        }
 
         cmp.setup({
           mapping = {
+            ["<C-p>"] = cmp.mapping.select_prev_item(),
+            ["<C-n>"] = cmp.mapping.select_next_item(),
+            ["<C-l>"] = cmp.mapping.complete({}),
+            ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+            ["<C-f>"] = cmp.mapping.scroll_docs(4),
+            ["<CR>"] = cmp.mapping.confirm({ select = true }),
             ["<Tab>"] = cmp.mapping(function(fallback)
               if cmp.visible() then
                 cmp.select_next_item()
@@ -41,18 +159,41 @@ local mycmp = {
               end
             end, { "i", "s" }),
           },
-          sources = cmp.config.sources({
-            { name = "nvim_lsp" },
-            { name = "buffer" },
-            { name = "path" },
-          }),
+          sources = cmp_sources,
+          formatting = {
+            format = lspkind.cmp_format({
+              mode = "symbol",
+              maxwidth = 50,
+              elipsis_char = "...",
+            }),
+          },
         })
-        cmp.setup.cmdline("/", { sources = { name = "buffer" } })
+
+        cmp.setup.cmdline({ "/", "?" }, {
+          mapping = cmp.mapping.preset.cmdline(),
+          sources = cmp.config.sources({
+            { name = "nvim_lsp_document_symbol" }
+          }, {
+            { name = "buffer" }
+          })
+        })
+
         cmp.setup.cmdline(":", {
+          mapping = cmp.mapping.preset.cmdline(),
           sources = cmp.config.sources({
             { name = "path" },
             { name = "cmdline" },
           }),
+        })
+
+        require("cmp_dictionary").setup({
+          dic = {
+            -- ["*"] = { "/usr/share/dict/words" },
+            -- ["lua"] = {},
+            -- filename = {},
+            -- filepath = {},
+            -- spellang = {},
+          },
         })
 
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -90,6 +231,10 @@ local mycmp = {
           buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
           buf_set_keymap("n", "<space>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
           buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
+
+          if client.server_capabilities.documentSymbolProvider then
+            navic.attach(client, bufnr)
+          end
         end
 
         lspconfig.sumneko_lua.setup({

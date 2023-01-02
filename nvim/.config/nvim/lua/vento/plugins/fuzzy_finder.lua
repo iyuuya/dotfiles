@@ -1,5 +1,5 @@
 local fuzzy_finder = {
-  setup = function (use)
+  setup = function(use)
     -- FuzzyFinder
     use("lotabout/skim")
     use("lotabout/skim.vim")
