@@ -26,4 +26,4 @@ if test -f $HOME/.asdf/asdf.sh; then
 fi
 if test -f $HOME/.tok2/profile; then
   source "$HOME/.tok2/profile"
-fi:2
+fi
