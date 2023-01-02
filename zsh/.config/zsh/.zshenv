@@ -2,6 +2,7 @@ unsetopt GLOBAL_RCS
 export ZDOTDIR="$HOME/.config/zsh"
 
 export EDITOR=nvim
+export MOCWORD_DATA=$HOME/.local/share/mocword/mocword.sqlite
 
 path=(
   $HOME/.local/bin(N-/)
@@ -25,4 +26,4 @@ if test -f $HOME/.asdf/asdf.sh; then
 fi
 if test -f $HOME/.tok2/profile; then
   source "$HOME/.tok2/profile"
-fi
+fi:2
