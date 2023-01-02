@@ -25,6 +25,17 @@ function sw() {
   ln -sf ~/.config/git/$user ~/.config/git/local
 }
 
+function enable-secret-mode() {
+PROMPT='%D %* $ '
+RPROMPT=
+}
+
+function disable-secret-mode() {
+PROMPT='%F{green}%n%F{yellow}@%F{red}%M%f - %D %*
+$ '
+RPROMPT='[%~]'
+}
+
 eval "$(direnv hook zsh)"
 
 alias ls=exa
