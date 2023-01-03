@@ -1,6 +1,8 @@
 local treesitter = {
   setup = function(use)
     -- Treesitter
+    use("nvim-treesitter/nvim-treesitter-refactor")
+    use("Badhi/nvim-treesitter-cpp-tools")
     use({
       "nvim-treesitter/nvim-treesitter",
       run = ":TSUpdate",
@@ -45,6 +47,39 @@ local treesitter = {
               },
             },
           },
+          refactor = {
+            highlight_current_scope = { enable = false },
+            smart_rename = {
+              enable = true,
+              keymaps = {
+                smart_rename = "grr",
+              }
+            },
+            navigation = {
+              enable = true,
+              keymaps = {
+                goto_definition = "gnd",
+                list_definitions = "gnD",
+                list_definitions_toc = "gO",
+                goto_next_usage = "<a-*>",
+                goto_previous_usage = "<a-#>",
+              }
+            }
+          },
+          nt_cpp_tools = {
+            enable = true,
+            preview = {
+              quit = "q", -- optional keymapping for quit preview
+              accept = "<tab>" -- optional keymapping for accept preview
+            },
+            -- header_extension = "h", -- optional
+            -- source_extension = "cxx", -- optional
+            custom_define_class_function_commands = { -- optional
+              TSCppImplWrite = {
+                output_handle = require("nvim-treesitter.nt-cpp-tools.output_handlers").get_add_to_cpp()
+              }
+            }
+          }
         })
 
         vim.opt.foldmethod = "expr"
@@ -67,55 +102,6 @@ local treesitter = {
           },
           zindex = 20,
           mode = "cursor", -- or "topline"
-        })
-      end
-    })
-    use({
-      "nvim-treesitter/nvim-treesitter-refactor",
-      config = function()
-        require("nvim-treesitter.configs").setup({
-          refactor = {
-            highlight_current_scope = { enable = false },
-            smart_rename = {
-              enable = true,
-              keymaps = {
-                smart_rename = "grr",
-              }
-            },
-            navigation = {
-              enable = true,
-              keymaps = {
-                goto_definition = "gnd",
-                list_definitions = "gnD",
-                list_definitions_toc = "gO",
-                goto_next_usage = "<a-*>",
-                goto_previous_usage = "<a-#>",
-              }
-            }
-          }
-        })
-      end
-    })
-    use({
-      "Badhi/nvim-treesitter-cpp-tools",
-      requires = { "nvim-treesitter/nvim-treesitter" },
-      config = function()
-        require("nvim-treesitter.configs").setup({
-          -- ...
-          nt_cpp_tools = {
-            enable = true,
-            preview = {
-              quit = "q", -- optional keymapping for quit preview
-              accept = "<tab>" -- optional keymapping for accept preview
-            },
-            header_extension = "h", -- optional
-            source_extension = "cxx", -- optional
-            custom_define_class_function_commands = { -- optional
-              TSCppImplWrite = {
-                output_handle = require("nvim-treesitter.nt-cpp-tools.output_handlers").get_add_to_cpp()
-              }
-            }
-          }
         })
       end
     })
