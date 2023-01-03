@@ -6,6 +6,7 @@ export MOCWORD_DATA=$HOME/.local/share/mocword/mocword.sqlite
 
 path=(
   $HOME/.local/bin(N-/)
+  $HOME/.cargo/bin(N-/)
   $HOME/go/bin(N-/)
   /opt/homebrew/bin(N-/)
   /opt/homebrew/sbin(N-/)
@@ -18,9 +19,6 @@ path=(
   $path
 )
 
-if test -f $HOME/.cargo/env; then
-  source "$HOME/.cargo/env"
-fi
 if test -f $HOME/.asdf/asdf.sh; then
  source $HOME/.asdf/asdf.sh
 fi
