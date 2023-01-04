@@ -36,6 +36,18 @@ $ '
 RPROMPT='[%~]'
 }
 
+function fzf-tmux-attach() {
+  list=$(tmux ls)
+  [ $? != 0 ] && return $?
+
+  if [ -z $TMUX ]; then
+    selected=$(echo $list | fzf | tr -d : | awk '{ print $1 }') &&
+      tmux attach -t $selected
+  else
+    tmux choose-tree
+  fi
+}
+
 eval "$(direnv hook zsh)"
 
 alias ls=exa
@@ -46,7 +58,7 @@ alias dir="ls -la"
 alias mux=tmuxinator
 alias t=tmux
 alias tls='tmux ls'
-alias tat='tmux attach -t'
+alias tat=fzf-tmux-attach
 
 alias g=git
 alias gs='git status'
