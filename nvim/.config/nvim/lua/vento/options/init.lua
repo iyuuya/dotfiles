@@ -93,7 +93,7 @@ vim.cmdwinheight = 5
 
 -- 22 running make and jumping to errors (quickfix)
 if vim.fn.executable('rg') then
-  vim.opt.grepprg="rg --vimgrep --hidden > /dev/null"
+  vim.opt.grepprg = "rg --vimgrep --hidden > /dev/null"
   vim.opt.grepformat = "%f:%l:%c:%m"
 end
 
@@ -112,4 +112,27 @@ vim.filetype.add({
   filename = {
     ["Schemafile"] = "ruby",
   },
+})
+
+local ft_go_augroup = vim.api.nvim_create_augroup("FileTypeGo", {})
+vim.api.nvim_create_autocmd("FileType", {
+  group = ft_go_augroup,
+  pattern = "go",
+  callback = function()
+    vim.bo.expandtab   = false
+    vim.bo.shiftwidth  = 4
+    vim.bo.softtabstop = 4
+    vim.bo.tabstop     = 4
+  end
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = ft_go_augroup,
+  pattern = "make",
+  callback = function()
+    vim.bo.expandtab   = false
+    vim.bo.shiftwidth  = 4
+    vim.bo.softtabstop = 4
+    vim.bo.tabstop     = 4
+  end
 })
