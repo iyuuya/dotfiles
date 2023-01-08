@@ -21,8 +21,10 @@ function sw() {
   fi
 
   local user=$1
+  export P_USERNAME=$user
   ln -sf ~/.ssh/$user ~/.ssh/config
   ln -sf ~/.config/git/$user ~/.config/git/local
+  ln -sf ~/.config/zsh/.zshenv.$user ~/.config/zsh/.zshenv.local
 }
 
 function enable-secret-mode() {
@@ -70,6 +72,11 @@ alias less='/usr/share/vim/vim90/macros/less.sh'
 autoload -U compinit
 compinit -i
 
-PROMPT='%F{green}%n%F{yellow}@%F{red}%M%f - %D %*
+function p_username() {
+  echo -n "$P_USERNAME"
+}
+
+setopt PROMPT_SUBST
+PROMPT='%F{green}$(p_username)%F{yellow}@%F{red}%M%f - %D %*
 $ '
 RPROMPT='[%~]'

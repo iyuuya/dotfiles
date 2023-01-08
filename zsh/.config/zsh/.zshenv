@@ -25,3 +25,7 @@ fi
 if test -f $HOME/.tok2/profile; then
   source "$HOME/.tok2/profile"
 fi
+
+if test -f $HOME/.config/zsh/.zshenv.local; then
+  source "$HOME/.config/zsh/.zshenv.local"
+fi
