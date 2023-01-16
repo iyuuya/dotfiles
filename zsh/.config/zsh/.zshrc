@@ -43,8 +43,11 @@ function fzf-tmux-attach() {
   [ $? != 0 ] && return $?
 
   if [ -z $TMUX ]; then
-    selected=$(echo $list | fzf | tr -d : | awk '{ print $1 }') &&
-      tmux attach -t $selected
+    if [ $# -eq 1 ]; then
+      tmux attach -t $1
+    else
+      selected=$(echo $list | fzf | tr -d : | awk '{ print $1 }') && tmux attach -t $selected
+    fi
   else
     tmux choose-tree
   fi
