@@ -17,11 +17,18 @@ local filetype = {
       run = "cd app && npm install",
       setup = function()
         vim.g.mkdp_filetypes = { "markdown" }
-        vim.g.mkdp_auto_start = false
+        vim.g.mkdp_auto_start = 0
+        vim.g.mkdp_preview_options = {
+          ['uml'] = {
+            ['imageFormat'] = 'svg',
+            ['server'] = 'http://localhost:8000/plantuml',
+          },
+        }
       end,
       ft = { "markdown" }
     })
     use("sgur/vim-editorconfig")
+    use("aklt/plantuml-syntax")
   end
 }
 
