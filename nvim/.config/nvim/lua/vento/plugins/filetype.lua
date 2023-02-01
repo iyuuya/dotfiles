@@ -19,6 +19,10 @@ local filetype = {
         vim.g.mkdp_filetypes = { "markdown" }
         vim.g.mkdp_auto_start = 0
         vim.g.mkdp_preview_options = {
+          ['plantuml'] = {
+            ['imageFormat'] = 'svg',
+            ['server'] = 'http://localhost:8000/plantuml',
+          },
           ['uml'] = {
             ['imageFormat'] = 'svg',
             ['server'] = 'http://localhost:8000/plantuml',
