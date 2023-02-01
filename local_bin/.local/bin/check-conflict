@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'open3'
+
+# NOTE: origin/masterとの差分が作業branchの変更のみであることを期待している
+# つまり `git rebase origin/master` しておかないと正常に動かない
+def collect_changed_files_of_current_branch
+  # system('git fetch --all > /dev/null 2>&1')
+  `git diff --name-only origin/master`.lines.map(&:chomp).map(&:strip)
+end
+
+def search_branches(pattern)
+  branches = `git branch -a`.lines.map(&:chomp).map(&:strip)
+  # TODO: include?では弱いので、もう少し柔軟に探せるようにしたい
+  branches.select { |branch| branch.include?(pattern) }
+end
+
+def collect_conflicts(branch)
+  system("git merge --no-commit #{branch} > /dev/null 2>&1")
+  files = `git diff --name-only`.lines.map(&:chomp).map(&:strip)
+  system('git merge --abort > /dev/null 2>&1')
+  files
+end
+
+def check_conflicts(branch_pattern)
+  changed_files = collect_changed_files_of_current_branch
+
+  branches = search_branches(branch_pattern)
+  branches.each do |branch|
+    branch = branch.sub('remotes/', '')
+
+    puts "# #{branch}"
+    conflicted_files = collect_conflicts(branch)
+    conflicted_files.each do |f|
+      puts f if changed_files.include?(f)
+    end
+  end
+end
+
+if ARGV.size != 1
+  warn 'usage: check-conflict BRANCH_PATTERN'
+  exit(-1)
+end
+
+check_conflicts(ARGV[0])
