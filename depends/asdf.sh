@@ -21,5 +21,9 @@ if ! asdf plugin list | grep python > /dev/null 2>&1; then
   asdf plugin add python
 fi
 
+if ! asdf plugin list | grep ghq > /dev/null 2>&1; then
+  asdf plugin add ghq
+fi
+
 ln -sf $SCRIPT_DIR/.tool-versions $HOME/.tool-versions
 asdf install
