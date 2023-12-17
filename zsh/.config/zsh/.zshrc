@@ -83,3 +83,7 @@ setopt PROMPT_SUBST
 PROMPT='%F{green}$(p_username)%F{yellow}@%F{red}%M%f - %D %*
 $ '
 RPROMPT='[%~]'
+
+if test -f $HOME/.config/zsh/.zshrc.local; then
+  source "$HOME/.config/zsh/.zshrc.local"
+fi

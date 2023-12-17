@@ -2,4 +2,5 @@ nvim/.config/nvim/plugin/packer_compiled.lua
 .luarc.json
 zsh/.config/zsh/.zcompdump
 zsh/.config/zsh/.zshenv.local
+zsh/.config/zsh/.zshrc.local
 hyper/.config/Hyper/plugins
