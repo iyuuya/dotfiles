@@ -81,6 +81,11 @@ alias gcm='git commit -m'
 
 alias less='/usr/share/vim/vim90/macros/less.sh'
 
+alias -g G='| grep'
+alias -g L='| less'
+alias -g H='| head'
+alias -g T='| tail'
+
 autoload -U compinit
 compinit -i
 
