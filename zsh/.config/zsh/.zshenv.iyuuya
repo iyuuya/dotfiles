@@ -4,10 +4,3 @@ if command -v keychain > /dev/null 2>&1 ; then
   keychain --nogui $HOME/.ssh/ids/iyuuya.github.com.id_ed25519
   source $HOME/.keychain/$HOST-sh
 fi
-
-if command -v bw > /dev/null 2>&1; then
-  function envwarden_setup() {
-    eval "export BW_SESSION=\"\$(bw unlock --raw)\"; export ENVWARDEN_FOLDERID=\$(bw get folder Dev/envwarden | jq -r .id)"
-    alias envchain=envwarden
-  }
-fi

@@ -1,5 +1,14 @@
 export GPG_TTY=$(tty)
 
+if command -v bw > /dev/null 2>&1; then
+  function envwarden_setup() {
+    eval "export BW_SESSION=\"\$(bw unlock --raw)\"; export ENVWARDEN_FOLDERID=\$(bw get folder Dev/envwarden | jq -r .id)"
+    if command -v envchain > /dev/null 2>&1; then
+      alias envchain=envwarden
+    fi
+  }
+fi
+
 function ghq-cd() {
   cd $(ghq list --full-path | sk)
 }
