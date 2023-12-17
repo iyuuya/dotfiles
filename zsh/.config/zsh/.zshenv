@@ -41,7 +41,7 @@ if test -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh
   source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
 fi
 
-if [ -d "$HOME/.cargo/env" ]; then
+if [ -e "$HOME/.cargo/env" ]; then
   . "$HOME/.cargo/env"
 fi
 
