@@ -14,6 +14,11 @@ function gw-cd() {
   cd $(echo "$worktree" | awk '{print $1}')
 }
 
+function gco() {
+  b=$(git branch | rg -v '[+*]' | tr -d '[:blank:]'| fzf +m --preview='echo "## Log ==========" && git log HEAD...{} -n 3 --date-order --reverse && echo "\n## Diff ==========" && git diff HEAD...{}') &&
+  git checkout $b
+}
+
 function sw() {
   if [ "$#" -ne 1 ]; then
     echo "sw: USER"
