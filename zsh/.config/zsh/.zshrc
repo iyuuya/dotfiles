@@ -55,7 +55,11 @@ function fzf-tmux-attach() {
 
 eval "$(direnv hook zsh)"
 
-alias ls=exa
+if command -v eza > /dev/null 2>&1; then
+  alias ls=eza
+elif command -v exa > /dev/null 2>&1; then
+  alias ls=exa
+fi
 alias la="ls -a"
 alias ll="ls -l"
 alias dir="ls -la"
