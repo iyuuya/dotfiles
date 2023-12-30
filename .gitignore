@@ -4,3 +4,10 @@ zsh/.config/zsh/.zcompdump
 zsh/.config/zsh/.zshenv.local
 zsh/.config/zsh/.zshrc.local
 hyper/.config/Hyper/plugins
+local_bin/.local/bin/docker
+local_bin/.local/bin/docker-compose
+local_bin/.local/bin/docker-credential-osxkeychain
+local_bin/.local/bin/kubectl
+local_bin/.local/bin/orb
+local_bin/.local/bin/orbctl
+local_bin/.local/bin/lvim
