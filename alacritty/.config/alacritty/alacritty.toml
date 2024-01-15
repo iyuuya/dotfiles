@@ -1,4 +1,9 @@
-import = ["/Users/iyuuya/.config/alacritty/themes/themes/gruvbox_dark.toml"]
+import = [
+# "/Users/yuya-ito/.config/alacritty/themes/themes/tomorrow_night_bright.toml",
+# "/Users/yuya-ito/.config/alacritty/themes/themes/wombat.toml",
+# "/Users/yuya-ito/.config/alacritty/themes/themes/nightfox.toml",
+  "/Users/yuya-ito/.config/alacritty/themes/themes/gruvbox_dark.toml"
+]
 live_config_reload = true
 
 [env]
@@ -8,19 +13,19 @@ TERM = "xterm-256color"
 size = 12.0
 
 [font.bold]
-family = "SauceCodePro Nerd Font"
+family = "SauceCodePro NFP"
 style = "Bold"
 
 [font.bold_italic]
-family = "SauceCodePro Nerd Font"
+family = "SauceCodePro NFP"
 style = "Bold Italic"
 
 [font.italic]
-family = "SauceCodePro Nerd Font"
+family = "SauceCodePro NFP"
 style = "Italic"
 
 [font.normal]
-family = "SauceCodePro Nerd Font"
+family = "SauceCodePro NFP"
 style = "Regular"
 
 [[keyboard.bindings]]
