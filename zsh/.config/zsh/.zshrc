@@ -95,6 +95,8 @@ alias -g L='| less'
 alias -g H='| head'
 alias -g T='| tail'
 
+fpath=(${ASDF_DIR}/completions $fpath)
+
 autoload -U compinit
 compinit -i
 

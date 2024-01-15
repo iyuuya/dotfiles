@@ -26,13 +26,13 @@ if [ -d /home/linuxbrew/.linuxbrew/bin ]; then
   fi
 else
   if test -f $HOME/.asdf/asdf.sh; then
-    source $HOME/.asdf/asdf.sh
+    . $HOME/.asdf/asdf.sh
   fi
 fi
 
-if test -f $HOME/.tok2/profile; then
-  source "$HOME/.tok2/profile"
-fi
+# if test -f $HOME/.tok2/profile; then
+#   source "$HOME/.tok2/profile"
+# fi
 
 if test -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc; then
   source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
