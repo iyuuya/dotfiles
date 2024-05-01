@@ -35,10 +35,23 @@ function sw() {
   fi
 
   local user=$1
+  if [ ! -e ~/.ssh/${user} ]; then
+    echo "No ssh: ${user}"
+    return
+  fi
+  if [ ! -e ~/.config/git/${user} ]; then
+    echo "No git: ${user}"
+    return
+  fi
+
   export P_USERNAME=$user
   ln -sf ~/.ssh/$user ~/.ssh/config
   ln -sf ~/.config/git/$user ~/.config/git/local
-  ln -sf ~/.config/zsh/.zshenv.$user ~/.config/zsh/.zshenv.local
+  if [ -e ~/.config/zsh/.zshenv.${user} ]; then
+    ln -sf ~/.config/zsh/.zshenv.$user ~/.config/zsh/.zshenv.local
+  else
+    rm ~/.config/zsh/.zshenv.local
+  fi
 }
 
 function enable-secret-mode() {
@@ -105,7 +118,7 @@ function p_username() {
 }
 
 setopt PROMPT_SUBST
-PROMPT='%F{green}$(p_username)%F{yellow}@%F{red}%M%f - %D %*
+PROMPT='%F{green}$(p_username)%F{yellow}%f - %D %*
 $ '
 RPROMPT='[%~]'
 
