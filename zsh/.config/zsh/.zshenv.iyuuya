@@ -1,6 +1,6 @@
 export P_USERNAME=iyuuya
 
-if command -v keychain > /dev/null 2>&1 ; then
-  keychain --nogui $HOME/.ssh/ids/iyuuya.github.com.id_ed25519
-  source $HOME/.keychain/$HOST-sh
+if command -v keychain >/dev/null 2>&1; then
+	keychain --nogui $HOME/.ssh/ids/iyuuya.github.com.id_ed25519
+	source $HOME/.keychain/$HOST-sh
 fi
