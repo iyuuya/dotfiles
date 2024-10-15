@@ -1,0 +1,42 @@
+#!/usr/bin/env zsh
+
+function zh() {
+	case $1 in
+	tokubai_user_id)
+		echo "自分のPRODのトクバイユーザーIDを出力"
+		;;
+	tokubai_user_id_stg)
+		echo "自分のSTGのトクバイユーザーIDを出力"
+		;;
+	office_id)
+		echo "自分の本部IDを出力する"
+		;;
+
+	tokubai_prod)
+		echo "トクバイ:PROD URL一覧"
+		;;
+	tokubai_stg)
+		echo "トクバイ:STG URL一覧"
+		;;
+	tokubai_local)
+		echo "トクバイ:ローカル URL一覧"
+		;;
+
+	tokubai_rev)
+		echo "トクバイ環境のリビジョン確認"
+		;;
+
+	myarea-gql-check)
+		echo "myareaのGraphQLのエンドポイントが生きているか確認する"
+		;;
+	pr_stg_cwlog*)
+		echo "PR-STGのCloudWatch Logをtailする"
+		;;
+
+	"tokubai-ssm")
+		echo "[アラート対応] トクバイの環境にAWS SSMで接続する"
+		;;
+	esac
+}
+
+zh $*
