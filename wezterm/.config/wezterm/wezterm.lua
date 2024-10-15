@@ -15,7 +15,7 @@ config.color_scheme = "Gruvbox dark, hard (base16)"
 -- Font
 -- config.font = wezterm.font("SauceCodePro Nerd Font Propo")
 config.font = wezterm.font("JetBrains Mono")
-config.font_size = 12.0
+config.font_size = 10.0
 
 -- Window
 config.window_decorations = "RESIZE"
