@@ -3,7 +3,6 @@ nvim/.config/nvim/plugin/packer_compiled.lua
 zsh/.config/zsh/.zcompdump
 zsh/.config/zsh/.zshenv.local
 zsh/.config/zsh/.zshrc.local
-hyper/.config/Hyper/plugins
 local_bin/.local/bin/docker
 local_bin/.local/bin/docker-compose
 local_bin/.local/bin/docker-credential-osxkeychain
