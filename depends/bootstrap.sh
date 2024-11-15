@@ -15,7 +15,6 @@ elif [[ $(uname -a) == *"Debian"* ]]; then
 fi
 
 zsh $SCRIPT_DIR/rust.sh
-zsh $SCRIPT_DIR/alacritty.sh
 zsh $SCRIPT_DIR/asdf.sh
 zsh $SCRIPT_DIR/neovim.sh
 zsh $SCRIPT_DIR/tmuxinator.sh
