@@ -1,29 +1,29 @@
-local file_explorer = {
-  setup = function(use)
-    use({
-      "kevinhwang91/rnvimr",
-      config = function()
-        vim.g.rnvimr_enable_ex = 1
-        vim.g.rnvimr_enable_picker = 1
-        vim.g.rnvimr_draw_border = 1
-        vim.g.rnvimr_hide_gitignore = 1
-        vim.cmd([[
-        let g:rnvimr_action = {
-        \ '<C-t>': 'NvimEdit tabedit',
-        \ '<C-x>': 'NvimEdit split',
-        \ '<C-v>': 'NvimEdit vsplit',
-        \ }
-        ]])
-      end
-    })
-    use({
-      'kyazdani42/nvim-tree.lua',
-      requires = { 'kyazdani42/nvim-web-devicons' },
-      config = function()
-        require('nvim-tree').setup {}
-      end
-    })
-  end
-}
+return {
+  {
+    "nvim-tree/nvim-tree.lua",
+    config = function()
+      -- disable netrw at the very start of your init.lua
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
 
-return file_explorer
+      -- OR setup with some options
+      require("nvim-tree").setup({
+        sort = {
+          sorter = "case_sensitive",
+        },
+        view = {
+          width = 48,
+        },
+        renderer = {
+          group_empty = true,
+        },
+        filters = {
+          dotfiles = true,
+        },
+      })
+
+      vim.api.nvim_set_keymap("n", "<leader>ef", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
+    end
+  },
+  { "nvim-tree/nvim-web-devicons", lazy = true },
+}
