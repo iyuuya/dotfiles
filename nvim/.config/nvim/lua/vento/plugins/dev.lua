@@ -1,7 +1,7 @@
 -- local dev = {
 --   setup = function(use)
 --     use("lambdalisue/readablefold.vim")
--- 
+--
 --     use('mhinz/vim-startify')
 --     use('DanilaMihailov/beacon.nvim')
 --     use({
@@ -10,23 +10,23 @@
 --     })
 --     use('Yggdroot/indentLine')
 --     use('voldikss/vim-floaterm')
--- 
+--
 --     -- Snippet
 --     use({
 --       "L3MON4D3/LuaSnip",
 --       requires = { "rafamadriz/friendly-snippets" },
 --       config = function()
 --         require("luasnip.loaders.from_vscode").lazy_load()
--- 
+--
 --         vim.cmd([[imap <silent><expr> <C-k> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<C-k>']])
 --         vim.cmd([[smap <silent><expr> <C-k> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<C-k>']])
 --       end,
 --     })
--- 
+--
 --     use("tpope/vim-abolish")
--- 
+--
 --     use("wakatime/vim-wakatime")
--- 
+--
 --     -- use("jamestthompson3/nvim-remote-containers")
 --     use({
 --       'esensar/nvim-dev-container',
@@ -47,10 +47,10 @@
 --         }
 --       end
 --     })
--- 
--- 
+--
+--
 --     use("rcarriga/nvim-notify")
--- 
+--
 --     -- highlight
 --     use({
 --       "RRethy/vim-illuminate",
@@ -86,7 +86,7 @@
 --         require("todo-comments").setup({})
 --       end
 --     })
--- 
+--
 --     -- scrollbar
 --     use({
 --       "kevinhwang91/nvim-hlslens",
@@ -96,7 +96,7 @@
 --             require("scrollbar.handlers.search").handler.show(plist.start_pos)
 --           end
 --         })
--- 
+--
 --         -- TODO: nvim_create_augroup
 --         -- TODO: nvim_create_autocmd
 --         vim.cmd [[
@@ -121,7 +121,7 @@
 --         require("scrollbar.handlers.gitsigns").setup()
 --       end
 --     })
--- 
+--
 --     -- align
 --     use({
 --       "junegunn/vim-easy-align",
@@ -130,7 +130,7 @@
 --         vim.keymap.set("x", "<leader>ga", "<Plug>(EasyAlign)", {})
 --       end
 --     })
--- 
+--
 --     -- show key map
 --     use({
 --       "folke/which-key.nvim",
@@ -138,10 +138,10 @@
 --         require("which-key").setup({})
 --       end
 --     })
--- 
+--
 --     -- mkdir
 --     use("jghauser/mkdir.nvim")
--- 
+--
 --     -- terminal
 --     use({
 --       "akinsho/toggleterm.nvim",
@@ -149,7 +149,7 @@
 --         require("toggleterm").setup()
 --       end
 --     })
--- 
+--
 --     -- comment
 --     use({
 --       "numToStr/Comment.nvim",
@@ -158,7 +158,7 @@
 --       end
 --     })
 --     use("LudoPinelli/comment-box.nvim")
--- 
+--
 --     -- match / pair
 --     use({
 --       "andymass/vim-matchup",
@@ -178,7 +178,7 @@
 --         require("nvim-ts-autotag").setup()
 --       end
 --     })
--- 
+--
 --     -- outline
 --     use({
 --       "stevearc/aerial.nvim",
@@ -194,9 +194,9 @@
 --     })
 --   end
 -- }
--- 
+--
 -- return dev
--- 
+--
 return {
   {
     "nvim-lualine/lualine.nvim",
@@ -232,5 +232,9 @@ return {
       }
     end,
     ft = { "markdown" },
+  },
+  {
+    "wakatime/vim-wakatime",
+    lazy = false,
   },
 }
