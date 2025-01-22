@@ -226,7 +226,7 @@ return {
       vim.g.mkdp_filetypes = { "markdown" }
       vim.g.mkdp_preview_options = {
         uml = {
-          server = "https://core.iyuuya-infra.orb.local/plantuml/",
+          server = "https://kroki.iyuuya-infra.orb.local/plantuml/",
           imageFormat = "svg",
         }
       }
