@@ -182,11 +182,18 @@ lvim.plugins = {
   },
   {
     "iamcco/markdown-preview.nvim",
-    build = "cd app && npm install",
-    ft = "markdown",
-    config = function()
-      vim.g.mkdp_auto_start = 1
+    build = "cd app && yarn install",
+    init = function()
+      vim.g.mkdp_auto_start = 0
+      vim.g.mkdp_filetypes = { "markdown" }
+      vim.g.mkdp_preview_options = {
+        uml = {
+          server = "https://kroki.iyuuya-infra.orb.local/plantuml/",
+          imageFormat = "svg",
+        }
+      }
     end,
+    ft = { "markdown" },
   },
   {
     "tpope/vim-surround",
@@ -197,24 +204,6 @@ lvim.plugins = {
   },
   {
     "tpope/vim-rails",
-    cmd = {
-      "Eview",
-      "Econtroller",
-      "Emodel",
-      "Smodel",
-      "Sview",
-      "Scontroller",
-      "Vmodel",
-      "Vview",
-      "Vcontroller",
-      "Tmodel",
-      "Tview",
-      "Tcontroller",
-      "Rails",
-      "Generate",
-      "Runner",
-      "Extract"
-    }
   },
   {
     "ellisonleao/gruvbox.nvim", priority = 1000, config = true
@@ -308,4 +297,33 @@ lvim.plugins = {
     "iberianpig/tig-explorer.vim",
     dependencies = { "rbgrouleff/bclose.vim" },
   },
+  {
+    "tpope/vim-dadbod",
+  },
+  {
+    "pbogut/vim-dadbod-ssh"
+  },
+  {
+    "kristijanhusak/vim-dadbod-ui",
+    config = function()
+      vim.g.db_ui_save_location = vim.fn.expand("~/work/kufu-ai/iyuuya-private/exam/saved")
+    end
+  },
+  {
+    "sato-s/telescope-rails.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      lvim.builtin.which_key.mappings["r"] = {
+        name = "Rails",
+        m = { "<cmd>Telescope rails models<cr>", "model" },
+        c = { "<cmd>Telescope rails controllers<cr>", "controller" },
+        v = { "<cmd>Telescope rails views<cr>", "view" },
+        s = { "<cmd>Telescope rails specs<cr>", "spec" },
+      }
+    end
+  },
 }
+
+lvim.builtin.telescope.on_config_done = function(telescope)
+  pcall(telescope.load_extension, "rails")
+end
