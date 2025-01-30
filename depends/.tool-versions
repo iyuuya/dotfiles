@@ -1,7 +1,7 @@
 nodejs 20.10.0
 ruby 3.4.1
 python 3.11.1
-ghq 1.5.0
+ghq 1.7.1
 crystal 1.9.2
 terraform 1.6.3
 rust 1.80.1
