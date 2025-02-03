@@ -5,6 +5,12 @@ lvim.format_on_save = true
 lvim.transparent_window = true
 lvim.colorscheme = "gruvbox"
 
+vim.filetype.add({
+  extension = {
+    es6 = "javascript",
+  }
+})
+
 lvim.plugins = {
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
