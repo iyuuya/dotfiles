@@ -108,10 +108,14 @@ alias -g L='| less'
 alias -g H='| head'
 alias -g T='| tail'
 
-fpath=(${ASDF_DIR}/completions $fpath)
-
 autoload -U compinit
 compinit -i
+
+if command -v mise > /dev/null 2>&1; then
+  eval "$(mise completion zsh)"
+elif command -v asdf > /dev/null 2>&1; then
+  fpath=(${ASDF_DIR}/completions $fpath)
+fi
 
 function p_username() {
 	echo -n "$P_USERNAME"

@@ -21,11 +21,15 @@ path=(
 if [ -d /home/linuxbrew/.linuxbrew/bin ]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-  if command -v asdf > /dev/null 2>&1; then
+  if command -v mise > /dev/null 2>&1; then
+    eval "$(mise activate zsh)"
+  elif command -v asdf > /dev/null 2>&1; then
     . $(brew --prefix asdf)/libexec/asdf.sh
   fi
 else
-  if test -f $HOME/.asdf/asdf.sh; then
+  if command -v mise > /dev/null 2>&1; then
+    eval "$(mise activate zsh)"
+  elif test -f $HOME/.asdf/asdf.sh; then
     . $HOME/.asdf/asdf.sh
   fi
 fi
