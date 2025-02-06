@@ -1,7 +1,6 @@
 brew "neovim"
 brew "zsh"
 brew "sk"
-brew "ghq"
 brew "eza"
 brew "lua-language-server"
 brew "go"
