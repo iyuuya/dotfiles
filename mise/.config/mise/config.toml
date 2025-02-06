@@ -1,0 +1,8 @@
+[tools]
+nodejs    = "22"
+ruby      = "3"
+python    = "3"
+ghq       = "latest"
+crystal   = "1"
+terraform = "latest"
+rust      = "1"
