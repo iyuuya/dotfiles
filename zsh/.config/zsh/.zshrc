@@ -137,8 +137,13 @@ PROMPT='%F{green}$(p_username)%F{yellow}%f - %D %*
 $ '
 RPROMPT='[%~]'
 
+if command -V brew > /dev/null 2>&1; then
+  [ -f $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
 if test -f $HOME/.config/zsh/.zshrc.local; then
 	source "$HOME/.config/zsh/.zshrc.local"
 fi
 
 autoload -Uz compinit && compinit
+
