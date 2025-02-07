@@ -10,4 +10,5 @@ local_bin/.local/bin/kubectl
 local_bin/.local/bin/orb
 local_bin/.local/bin/orbctl
 local_bin/.local/bin/lvim
+local_bin/.local/bin/mise
 zsh/.config/zsh/.zsh_history

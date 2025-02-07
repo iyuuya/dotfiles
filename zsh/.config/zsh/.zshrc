@@ -108,11 +108,23 @@ alias -g L='| less'
 alias -g H='| head'
 alias -g T='| tail'
 
-autoload -U compinit
-compinit -i
+if command -V brew > /dev/null 2>&1; then
+  fpath=(
+    $(brew --prefix)/share/zsh-completions(N-/)
+    $(brew --prefix)/share/zsh/site-functions(N-/)
+    "${fpath[@]}"
+  )
+fi
+
+fpath=(
+  ${ZDOTDIR}/functions
+  "${fpath[@]}"
+)
 
 if command -v mise > /dev/null 2>&1; then
-  eval "$(mise completion zsh)"
+  if [ ! -f "$ZDOTDIR/functions/_mise" ]; then
+    mise completion zsh > "$ZDOTDIR/functions/_mise"
+  fi
 elif command -v asdf > /dev/null 2>&1; then
   fpath=(${ASDF_DIR}/completions $fpath)
 fi
@@ -129,3 +141,5 @@ RPROMPT='[%~]'
 if test -f $HOME/.config/zsh/.zshrc.local; then
 	source "$HOME/.config/zsh/.zshrc.local"
 fi
+
+autoload -Uz compinit && compinit

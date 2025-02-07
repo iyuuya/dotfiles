@@ -4,6 +4,7 @@ export ZDOTDIR="$HOME/.config/zsh"
 export EDITOR=nvim
 export MOCWORD_DATA=$HOME/.local/share/mocword/mocword.sqlite
 
+typeset -U path PATH
 path=(
   $HOME/.local/bin(N-/)
   $HOME/go/bin(N-/)
