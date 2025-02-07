@@ -110,8 +110,7 @@ alias -g T='| tail'
 
 if command -V brew > /dev/null 2>&1; then
   fpath=(
-    $(brew --prefix)/share/zsh-completions(N-/)
-    $(brew --prefix)/share/zsh/site-functions(N-/)
+    $(brew --prefix)/share/zsh/functions(N-/)
     "${fpath[@]}"
   )
 fi
