@@ -11,4 +11,5 @@ local_bin/.local/bin/orb
 local_bin/.local/bin/orbctl
 local_bin/.local/bin/lvim
 local_bin/.local/bin/mise
+local_bin/.local/bin/mitamae
 zsh/.config/zsh/.zsh_history
