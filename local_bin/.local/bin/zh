@@ -36,6 +36,10 @@ function zh() {
 	"tokubai-ssm")
 		echo "[アラート対応] トクバイの環境にAWS SSMで接続する"
 		;;
+
+  ecrake)
+    echo "run rake task with envchain"
+    ;;
 	esac
 }
 
