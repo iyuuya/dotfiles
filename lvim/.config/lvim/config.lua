@@ -175,14 +175,6 @@ lvim.plugins = {
   },
 
   {
-    "f-person/git-blame.nvim",
-    event = "BufRead",
-    config = function()
-      vim.cmd "highlight default link gitblame SpecialComment"
-      require("gitblame").setup { enabled = false }
-    end,
-  },
-  {
     "folke/lsp-colors.nvim",
     event = "BufRead",
   },
@@ -205,8 +197,11 @@ lvim.plugins = {
     "tpope/vim-surround",
   },
   {
-    "wakatime/vim-wakatime",
-    lazy = false,
+    "benfowler/telescope-luasnip.nvim",
+    lazy = true,
+    config = function()
+      require("telescope").load_extension("luasnip")
+    end
   },
   {
     "tpope/vim-rails",
@@ -253,14 +248,6 @@ lvim.plugins = {
     "andres-lowrie/vim-sqlx",
   },
   {
-    "f-person/git-blame.nvim",
-    event = "BufRead",
-    config = function()
-      vim.cmd "highlight default link gitblame SpecialComment"
-      require("gitblame").setup { enabled = false }
-    end,
-  },
-  {
     "ruifm/gitlinker.nvim",
     event = "BufRead",
     config = function()
@@ -300,9 +287,88 @@ lvim.plugins = {
     ft = { "fugitive" }
   },
   {
+    "f-person/git-blame.nvim",
+    event = "BufRead",
+    config = function()
+      vim.cmd "highlight default link gitblame SpecialComment"
+      require("gitblame").setup { enabled = false }
+    end,
+  },
+  {
     "iberianpig/tig-explorer.vim",
     dependencies = { "rbgrouleff/bclose.vim" },
   },
+  {
+    "pwntester/octo.nvim",
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function()
+      require "octo".setup()
+    end
+  },
+  {
+    "ldelossa/gh.nvim",
+    dependencies = {
+      {
+        "ldelossa/litee.nvim",
+        config = function()
+          require("litee.lib").setup()
+        end,
+      },
+    },
+    config = function()
+      require("litee.gh").setup()
+      lvim.builtin.which_key.mappings['g']['h'] = {
+        name = 'Github',
+        c = {
+          name = 'Commits',
+          c    = { '<cmd>GHCloseCommit<cr>', 'Close' },
+          e    = { '<cmd>GHExpandCommit<cr>', 'Expand' },
+          o    = { '<cmd>GHOpenToCommit<cr>', 'Open to' },
+          p    = { '<cmd>GHPopOutCommit<cr>', 'Pop Out' },
+          z    = { '<cmd>GHCollapseCommit<cr>', 'Collapse' },
+        },
+        i = {
+          name = 'Issues',
+          p = { '<cmd>GHPreviewIssue<cr>', 'Preview' },
+        },
+        p = {
+          name = 'Pull Requests',
+          c = { '<cmd>GHClosePR<cr>', 'Close' },
+          d = { '<cmd>GHPRDetails<cr>', 'Details' },
+          e = { '<cmd>GHExpandPR<cr>', 'Expand' },
+          o = { '<cmd>GHOpenPR<cr>', 'Open' },
+          p = { '<cmd>GHPopOutPR<cr>', 'PopOut' },
+          r = { '<cmd>GHRefreshPR<cr>', 'Refresh' },
+          t = { '<cmd>GHOpenToPR<cr>', 'Open To' },
+          z = { '<cmd>GHCollapsePR<cr>', 'Collapse' },
+        },
+        r = {
+          name = 'Reviews',
+          b = { '<cmd>GHStartReview<cr>', 'Begin' },
+          c = { '<cmd>GHCloseReview<cr>', 'Close' },
+          d = { '<cmd>GHDeleteReview<cr>', 'Delete' },
+          e = { '<cmd>GHExpandReview<cr>', 'Expand' },
+          s = { '<cmd>GHSubmitReview<cr>', 'Submit' },
+          z = { '<cmd>GHCollapseReview<cr>', 'Collapse' },
+        },
+        t = {
+          name = 'Threads',
+          c = { '<cmd>GHCreateThread<cr>', 'Create' },
+          n = { '<cmd>GHNextThread<cr>', 'Next' },
+          t = { '<cmd>GHToggleThread<cr>', 'Toggle' },
+        },
+        l = {
+          name = 'Litee',
+          t = { '<cmd>LTPanel<cr>', 'Toggle Panel' },
+        },
+      }
+    end,
+  },
+
   {
     "tpope/vim-dadbod",
   },
@@ -316,7 +382,7 @@ lvim.plugins = {
     end
   },
   {
-    "sato-s/telescope-rails.nvim",
+    "iyuuya/telescope-rails.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
     config = function()
       lvim.builtin.which_key.mappings["r"] = {
