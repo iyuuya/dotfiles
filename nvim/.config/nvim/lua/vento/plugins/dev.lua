@@ -233,8 +233,4 @@ return {
     end,
     ft = { "markdown" },
   },
-  {
-    "wakatime/vim-wakatime",
-    lazy = false,
-  },
 }
