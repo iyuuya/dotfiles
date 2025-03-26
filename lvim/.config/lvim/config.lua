@@ -173,6 +173,71 @@ lvim.plugins = {
       }
     end,
   },
+  {
+    "yetone/avante.nvim",
+    event = "VeryLazy",
+    version = false,
+    opts = {
+      provider = "copilot",
+      auto_suggestions_provider = "copilot",
+      -- 動作設定
+      behaviour = {
+        auto_suggestions = false,
+        auto_set_highlight_group = true,
+        auto_set_keymaps = true,
+        auto_apply_diff_after_generation = false,
+        support_paste_from_clipboard = false,
+        minimize_diff = true,
+      },
+      -- ウィンドウ設定
+      windows = {
+        position = "right", -- サイドバーの位置
+        wrap = true,        -- テキストの折り返し
+        width = 30,         -- サイドバーの幅
+      },
+    },
+    build = "make",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      --- The below dependencies are optional,
+      "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+      "hrsh7th/nvim-cmp",              -- autocompletion for avante commands and mentions
+      "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
+      "zbirenbaum/copilot.lua",        -- for providers='copilot'
+    },
+  },
+  {
+    "ravitemer/mcphub.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim", -- Required for Job and HTTP requests
+    },
+    -- cmd = "MCPHub", -- lazily start the hub when `MCPHub` is called
+    build = "npm install -g mcp-hub@latest", -- Installs required mcp-hub npm module
+    config = function()
+      require("mcphub").setup({
+        -- Required options
+        port = 53000,                                               -- Port for MCP Hub server
+        config = vim.fn.expand("~/.config/mcphub/mcpservers.json"), -- Absolute path to config file
+
+        -- Optional options
+        on_ready = function(hub)
+          -- Called when hub is ready
+        end,
+        on_error = function(err)
+          -- Called on errors
+        end,
+        log = {
+          level = vim.log.levels.WARN,
+          to_file = false,
+          file_path = nil,
+          prefix = "MCPHub"
+        },
+      })
+    end
+  },
 
   {
     "folke/lsp-colors.nvim",
