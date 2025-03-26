@@ -467,3 +467,16 @@ lvim.plugins = {
 lvim.builtin.telescope.on_config_done = function(telescope)
   pcall(telescope.load_extension, "rails")
 end
+
+vim.diagnostic.config({
+  underline = true,
+  virtual_text = false,
+  float = {
+    border = 'single',
+  },
+  severity_sort = true,
+})
+
+vim.o.updatetime = 250
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, max_width=80})]]
+vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
