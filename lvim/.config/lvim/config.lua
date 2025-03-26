@@ -459,6 +459,9 @@ lvim.plugins = {
       }
     end
   },
+  {
+    "kchmck/vim-coffee-script"
+  },
 }
 
 lvim.builtin.telescope.on_config_done = function(telescope)
