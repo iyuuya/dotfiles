@@ -208,36 +208,47 @@ lvim.plugins = {
       "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
       "zbirenbaum/copilot.lua",        -- for providers='copilot'
     },
+    -- config = function()
+    --   require("avante").setup({
+    --     system_prompt = function()
+    --       local hub = require("mcphub").get_hub_instance()
+    --       return hub:get_active_servers_prompt()
+    --     end,
+    --     custom_tools = {
+    --       require("mcphub.extensions.avante").mcp_tool()
+    --     }
+    --   })
+    -- end
   },
-  {
-    "ravitemer/mcphub.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim", -- Required for Job and HTTP requests
-    },
-    -- cmd = "MCPHub", -- lazily start the hub when `MCPHub` is called
-    build = "npm install -g mcp-hub@latest", -- Installs required mcp-hub npm module
-    config = function()
-      require("mcphub").setup({
-        -- Required options
-        port = 53000,                                               -- Port for MCP Hub server
-        config = vim.fn.expand("~/.config/mcphub/mcpservers.json"), -- Absolute path to config file
+  -- {
+  --   "ravitemer/mcphub.nvim",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim", -- Required for Job and HTTP requests
+  --   },
+  --   -- cmd = "MCPHub", -- lazily start the hub when `MCPHub` is called
+  --   build = "npm install -g mcp-hub@latest", -- Installs required mcp-hub npm module
+  --   config = function()
+  --     require("mcphub").setup({
+  --       -- Required options
+  --       port = 53000,                                               -- Port for MCP Hub server
+  --       config = vim.fn.expand("~/.config/mcphub/mcpservers.json"), -- Absolute path to config file
 
-        -- Optional options
-        on_ready = function(hub)
-          -- Called when hub is ready
-        end,
-        on_error = function(err)
-          -- Called on errors
-        end,
-        log = {
-          level = vim.log.levels.WARN,
-          to_file = false,
-          file_path = nil,
-          prefix = "MCPHub"
-        },
-      })
-    end
-  },
+  --       -- Optional options
+  --       on_ready = function(hub)
+  --         -- Called when hub is ready
+  --       end,
+  --       on_error = function(err)
+  --         -- Called on errors
+  --       end,
+  --       log = {
+  --         level = vim.log.levels.WARN,
+  --         to_file = false,
+  --         file_path = nil,
+  --         prefix = "MCPHub"
+  --       },
+  --     })
+  --   end
+  -- },
 
   {
     "folke/lsp-colors.nvim",
@@ -309,6 +320,29 @@ lvim.plugins = {
       }
     end,
   },
+  -- {
+  --   "olimorris/codecompanion.nvim",
+  --   config = function()
+  --     require("codecompanion").setup({
+  --       strategies = {
+  --         chat = {
+  --           tools = {
+  --             ["mcp"] = {
+  --               callback = function()
+  --                 return require("mcphub.extensions.codecompanion")
+  --               end,
+  --               opts = {
+  --                 requires_approval = true, -- 安全性トグル
+  --                 temperature = 0.7         -- 創造性を制御
+  --               }
+  --             }
+  --           }
+  --         }
+  --       }
+  --     })
+  --   end,
+  -- },
+
   {
     "andres-lowrie/vim-sqlx",
   },
