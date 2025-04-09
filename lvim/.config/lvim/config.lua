@@ -502,6 +502,14 @@ lvim.builtin.telescope.on_config_done = function(telescope)
   pcall(telescope.load_extension, "rails")
 end
 
+lvim.builtin.nvimtree.setup.view.width = 40
+lvim.builtin.nvimtree.setup.sync_root_with_cwd = false
+lvim.builtin.nvimtree.setup.respect_buf_cwd = true
+lvim.builtin.nvimtree.setup.update_focused_file = {
+  enable = true,
+  update_root = false,
+}
+
 vim.diagnostic.config({
   underline = true,
   virtual_text = false,
