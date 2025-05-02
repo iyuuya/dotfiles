@@ -7,7 +7,7 @@ end
 config.automatically_reload_config = true
 
 -- ColorScheme
--- config.color_scheme = "iceberg-dark",
+-- config.color_scheme = "iceberg-dark"
 -- config.color_scheme = "Everforest Dark (Gogh)"
 config.color_scheme = "Gruvbox dark, hard (base16)"
 -- config.color_scheme = 'Tomorrow Night Bright'
@@ -27,7 +27,7 @@ config.window_padding = {
 }
 config.window_background_opacity = 0.9
 config.win32_system_backdrop = 'Acrylic'
-config.macos_window_background_blur = 15
+config.macos_window_background_blur = 10
 config.enable_scroll_bar = true
 
 config.initial_cols = 240
@@ -47,4 +47,3 @@ return config
 --     { key = "2", mods = "CMD",       action = wezterm.action { SplitVertical = { domain = "CurrentPaneDomain" } } },
 --     { key = "d", mods = "CMD|SHIFT", action = "ShowLauncher" },
 --   }
--- }
