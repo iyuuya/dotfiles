@@ -109,7 +109,7 @@ alias gs='git status'
 alias ga='git add'
 alias gcm='git commit -m'
 
-alias less='/usr/share/vim/vim90/macros/less.sh'
+alias less='/usr/share/vim/vim91/macros/less.sh'
 
 alias -g G='| grep'
 alias -g L='| less'
