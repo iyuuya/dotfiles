@@ -520,6 +520,20 @@ lvim.plugins = {
       "nvim-telescope/telescope.nvim", -- For picking b/w different remote methods
     }
   },
+
+  {
+    "stevearc/aerial.nvim",
+    config = function()
+      require("aerial").setup({})
+
+      lvim.builtin.which_key.mappings["a"] = {
+        name = "Aerial",
+        p = { "<cmd>AerialPrev<cr>", "prev" },
+        n = { "<cmd>AerialNext<cr>", "next" },
+        t = { "<cmd>AerialToggle!<cr>", "toggle" },
+      }
+    end,
+  }
 }
 
 lvim.builtin.telescope.on_config_done = function(telescope)
