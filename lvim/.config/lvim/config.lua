@@ -59,6 +59,14 @@ lvim.plugins = {
           "typescript-language-server",
           "yaml-language-server",
           "yamllint",
+          --- sql
+          'sqlls',
+          'sleek',
+          'pgformatter',
+          'sqlfmt',
+          'sqruff',
+          'sql-formatter',
+          ---
         },
         integrations = {
           ['mason-lspconfig'] = true,
@@ -177,25 +185,6 @@ lvim.plugins = {
     "yetone/avante.nvim",
     event = "VeryLazy",
     version = false,
-    opts = {
-      provider = "copilot",
-      auto_suggestions_provider = "copilot",
-      -- 動作設定
-      behaviour = {
-        auto_suggestions = false,
-        auto_set_highlight_group = true,
-        auto_set_keymaps = true,
-        auto_apply_diff_after_generation = false,
-        support_paste_from_clipboard = false,
-        minimize_diff = true,
-      },
-      -- ウィンドウ設定
-      windows = {
-        position = "right", -- サイドバーの位置
-        wrap = true,        -- テキストの折り返し
-        width = 30,         -- サイドバーの幅
-      },
-    },
     build = "make",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
@@ -207,48 +196,66 @@ lvim.plugins = {
       "hrsh7th/nvim-cmp",              -- autocompletion for avante commands and mentions
       "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
       "zbirenbaum/copilot.lua",        -- for providers='copilot'
+      "ravitemer/mcphub.nvim",
     },
-    -- config = function()
-    --   require("avante").setup({
-    --     system_prompt = function()
-    --       local hub = require("mcphub").get_hub_instance()
-    --       return hub:get_active_servers_prompt()
-    --     end,
-    --     custom_tools = {
-    --       require("mcphub.extensions.avante").mcp_tool()
-    --     }
-    --   })
-    -- end
+    config = function()
+      require("avante").setup({
+        provider = "copilot",
+        auto_suggestions_provider = "copilot",
+        -- 動作設定
+        behaviour = {
+          auto_suggestions = false,
+          auto_set_highlight_group = true,
+          auto_set_keymaps = true,
+          auto_apply_diff_after_generation = false,
+          support_paste_from_clipboard = false,
+          minimize_diff = true,
+        },
+        -- ウィンドウ設定
+        windows = {
+          position = "right", -- サイドバーの位置
+          wrap = true,        -- テキストの折り返し
+          width = 30,         -- サイドバーの幅
+        },
+        system_prompt = function()
+          local hub = require("mcphub").get_hub_instance()
+          return hub:get_active_servers_prompt()
+        end,
+        custom_tools = {
+          require("mcphub.extensions.avante").mcp_tool()
+        },
+      })
+    end
   },
-  -- {
-  --   "ravitemer/mcphub.nvim",
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim", -- Required for Job and HTTP requests
-  --   },
-  --   -- cmd = "MCPHub", -- lazily start the hub when `MCPHub` is called
-  --   build = "npm install -g mcp-hub@latest", -- Installs required mcp-hub npm module
-  --   config = function()
-  --     require("mcphub").setup({
-  --       -- Required options
-  --       port = 53000,                                               -- Port for MCP Hub server
-  --       config = vim.fn.expand("~/.config/mcphub/mcpservers.json"), -- Absolute path to config file
+  {
+    "ravitemer/mcphub.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim", -- Required for Job and HTTP requests
+    },
+    -- cmd = "MCPHub", -- lazily start the hub when `MCPHub` is called
+    build = "npm install -g mcp-hub@latest", -- Installs required mcp-hub npm module
+    config = function()
+      require("mcphub").setup({
+        -- Required options
+        port = 53000,                                               -- Port for MCP Hub server
+        config = vim.fn.expand("~/.config/mcphub/mcpservers.json"), -- Absolute path to config file
 
-  --       -- Optional options
-  --       on_ready = function(hub)
-  --         -- Called when hub is ready
-  --       end,
-  --       on_error = function(err)
-  --         -- Called on errors
-  --       end,
-  --       log = {
-  --         level = vim.log.levels.WARN,
-  --         to_file = false,
-  --         file_path = nil,
-  --         prefix = "MCPHub"
-  --       },
-  --     })
-  --   end
-  -- },
+        -- Optional options
+        on_ready = function(hub)
+          -- Called when hub is ready
+        end,
+        on_error = function(err)
+          -- Called on errors
+        end,
+        log = {
+          level = vim.log.levels.WARN,
+          to_file = false,
+          file_path = nil,
+          prefix = "MCPHub"
+        },
+      })
+    end
+  },
 
   {
     "folke/lsp-colors.nvim",
@@ -320,29 +327,28 @@ lvim.plugins = {
       }
     end,
   },
-  -- {
-  --   "olimorris/codecompanion.nvim",
-  --   config = function()
-  --     require("codecompanion").setup({
-  --       strategies = {
-  --         chat = {
-  --           tools = {
-  --             ["mcp"] = {
-  --               callback = function()
-  --                 return require("mcphub.extensions.codecompanion")
-  --               end,
-  --               opts = {
-  --                 requires_approval = true, -- 安全性トグル
-  --                 temperature = 0.7         -- 創造性を制御
-  --               }
-  --             }
-  --           }
-  --         }
-  --       }
-  --     })
-  --   end,
-  -- },
-
+  {
+    "olimorris/codecompanion.nvim",
+    config = function()
+      require("codecompanion").setup({
+        strategies = {
+          chat = {
+            tools = {
+              ["mcp"] = {
+                callback = function()
+                  return require("mcphub.extensions.codecompanion")
+                end,
+                opts = {
+                  requires_approval = true, -- 安全性トグル
+                  temperature = 0.7         -- 創造性を制御
+                }
+              }
+            }
+          }
+        }
+      })
+    end,
+  },
   {
     "andres-lowrie/vim-sqlx",
   },
@@ -496,6 +502,24 @@ lvim.plugins = {
   {
     "kchmck/vim-coffee-script"
   },
+
+  -- {
+  --   "debdutdeb/devcontainer.nvim",
+  --   config = function()
+  --     require("devcontainer").setup {}
+  --   end
+  -- }
+  {
+    "amitds1997/remote-nvim.nvim",
+    config = function()
+      require("remote-nvim").setup({})
+    end,
+    dependencies = {
+      "nvim-lua/plenary.nvim",         -- For standard functions
+      "MunifTanjim/nui.nvim",          -- To build the plugin UI
+      "nvim-telescope/telescope.nvim", -- For picking b/w different remote methods
+    }
+  },
 }
 
 lvim.builtin.telescope.on_config_done = function(telescope)
@@ -522,3 +546,7 @@ vim.diagnostic.config({
 vim.o.updatetime = 250
 vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, max_width=80})]]
 vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
+
+lvim.builtin.autopairs.active = false -- disable autopairs (smart parentheses)
+lvim.builtin.cmp.active = false       -- disable autocomplete
+vim.diagnostic.enable(false)          -- disable diagnostics
