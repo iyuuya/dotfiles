@@ -1,5 +1,7 @@
 export GPG_TTY=$(tty)
 
+alias claude="DISABLE_TELEMETRY=1 DISABLE_ERROR_REPORTING=1 claude"
+
 if command -v bw >/dev/null 2>&1; then
   function envwarden_setup() {
     eval "export BW_SESSION=\"\$(bw unlock --raw)\"; export ENVWARDEN_FOLDERID=\$(bw get folder Dev/envwarden | jq -r .id)"
@@ -10,11 +12,13 @@ if command -v bw >/dev/null 2>&1; then
 fi
 
 function ghq-cd() {
-cd $(ghq list --full-path | sk)
+  repos=$(ghq list --full-path) &&
+    repo=$(echo $repos | fzf +m) &&
+  cd "$repo"
 }
 
 function ghq-update-all() {
-ghq get -u -p $(ghq list)
+  ghq get -u -p $(ghq list)
 }
 
 function gw-cd() {
@@ -28,41 +32,45 @@ function gco() {
     git checkout $b
   }
 
-  function sw() {
-    if [ "$#" -ne 1 ]; then
-      echo "sw: USER"
-      return 1
-    fi
+function sw() {
+  if [ "$#" -ne 1 ]; then
+    echo "sw: USER"
+    return 1
+  fi
 
-    local user=$1
-    if [ ! -e ~/.ssh/${user} ]; then
-      echo "No ssh: ${user}"
-      return
-    fi
-    if [ ! -e ~/.config/git/${user} ]; then
-      echo "No git: ${user}"
-      return
-    fi
+  local user=$1
+  export P_USERNAME=$user
 
-    export P_USERNAME=$user
+  if [ ! -e ~/.ssh/${user} ]; then
+    echo "No ssh: ${user}"
+  else
     ln -sf ~/.ssh/$user ~/.ssh/config
+  fi
+
+  if [ ! -e ~/.config/git/${user} ]; then
+    echo "No git: ${user}"
+  else
     ln -sf ~/.config/git/$user ~/.config/git/local
-    if [ -e ~/.config/zsh/.zshenv.${user} ]; then
-      echo "link zshenv"
-      ln -sf ~/.config/zsh/.zshenv.$user ~/.config/zsh/.zshenv.local
-    else
-      rm ~/.config/zsh/.zshenv.local
-    fi
+  fi
 
-    if [ -e ~/.config/zsh/.zshrc.${user} ]; then
-      echo "link zshrc"
-      ln -sf ~/.config/zsh/.zshrc.$user ~/.config/zsh/.zshrc.local
-    else
-      rm ~/.config/zsh/.zshrc.local
-    fi
-  }
+  if [ -e ~/.config/zsh/.zshenv.${user} ]; then
+    echo "link zshenv"
+    ln -sf ~/.config/zsh/.zshenv.$user ~/.config/zsh/.zshenv.local
+    source ~/.config/zsh/.zshenv.local
+  else
+    rm ~/.config/zsh/.zshenv.local
+  fi
 
-  function enable-secret-mode() {
+  if [ -e ~/.config/zsh/.zshrc.${user} ]; then
+    echo "link zshrc"
+    ln -sf ~/.config/zsh/.zshrc.$user ~/.config/zsh/.zshrc.local
+    source ~/.config/zsh/.zshrc.local
+  else
+    rm ~/.config/zsh/.zshrc.local
+  fi
+}
+
+function enable-secret-mode() {
   PROMPT='%D %* $ '
   RPROMPT=
 }
@@ -109,7 +117,13 @@ alias gs='git status'
 alias ga='git add'
 alias gcm='git commit -m'
 
-alias less='/usr/share/vim/vim91/macros/less.sh'
+if [ -f /usr/share/vim/vim91/macros/less.sh ]; then
+  alias less='/usr/share/vim/vim91/macros/less.sh'
+fi
+
+if command -v code-insiders > /dev/null 2>&1; then
+  alias code='code-insiders'
+fi
 
 alias -g G='| grep'
 alias -g L='| less'
