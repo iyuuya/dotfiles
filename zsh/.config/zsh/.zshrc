@@ -130,6 +130,18 @@ alias -g L='| less'
 alias -g H='| head'
 alias -g T='| tail'
 
+if command -v zoxide > /dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+  alias zo='zoxide'
+  zo-cd() {
+    t=$(zoxide query -i) && cd "$t"
+  }
+fi
+
+if command -v atuin > /dev/null 2>&1; then
+  eval "$(atuin init zsh)"
+fi
+
 if command -V brew > /dev/null 2>&1; then
   fpath=(
     $(brew --prefix)/share/zsh/functions(N-/)
@@ -159,6 +171,10 @@ PROMPT='%F{green}$(p_username)%F{yellow}%f - %D %*
 $ '
 RPROMPT='[%~]'
 
+if command -V starship > /dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi
+
 # if command -V brew > /dev/null 2>&1; then
 #   [ -f $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # fi
@@ -168,3 +184,9 @@ if test -e $HOME/.config/zsh/.zshrc.local; then
 fi
 
 autoload -Uz compinit && compinit
+
+if command -v carapace > /dev/null 2>&1; then 
+  export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense'
+  source <(carapace _carapace zsh)
+  source <(carapace chmod zsh)
+fi
