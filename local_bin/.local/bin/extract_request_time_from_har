@@ -1,0 +1,17 @@
+#!/bin/sh
+
+echo '"url","startedDateTime","blocked","dns","connect","send","wait","receive","ssl"'
+jq -r '
+  .log.entries[] |
+  [
+    .request.url,
+    .startedDateTime,
+    .timings.blocked,
+    .timings.dns,
+    .timings.connect,
+    .timings.send,
+    .timings.wait,
+    .timings.receive,
+    .timings.ssl
+  ] | @csv
+' $1
