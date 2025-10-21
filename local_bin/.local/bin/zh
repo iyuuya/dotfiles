@@ -40,6 +40,20 @@ function zh() {
   ecrake)
     echo "run rake task with envchain"
     ;;
+
+  bargain)
+    echo "bargainのローカル環境を起動する"
+    ;;
+  bargain_f)
+    echo "bargain-frontendのローカル環境を起動する"
+    ;;
+  myarea)
+    echo "myareaのローカル環境を起動する"
+    ;;
+  rtrp)
+    echo "retripのローカル環境を起動する"
+    ;;
+
 	esac
 }
 
