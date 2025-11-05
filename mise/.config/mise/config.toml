@@ -1,5 +1,5 @@
 [tools]
-node      = "22"
+node      = "25"
 ruby      = "3"
 python    = "3"
 ghq       = "latest"
@@ -23,6 +23,8 @@ fzf = "latest"
 yazi = "latest"
 zoxide = "latest"
 usql = "latest"
+usage = "latest"
+"npm:mcp-hub" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["ruby", "node"]
