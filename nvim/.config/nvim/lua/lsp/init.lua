@@ -55,7 +55,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 			-- Add normal-mode keymappings for signature help
 			if client:supports_method("textDocument/signatureHelp") then
-				map("n", "<C-s>", function()
+				map("n", "<leader>ls", function()
 					vim.lsp.buf.signature_help()
 				end, { desc = "Trigger lsp signature help" })
 			end
