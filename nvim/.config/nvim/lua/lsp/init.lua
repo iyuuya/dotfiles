@@ -14,7 +14,7 @@ vim.lsp.config("copilot", {
 	},
 })
 
-vim.lsp.enable({ "lua_ls", "copilot" })
+vim.lsp.enable({ "lua_ls", "copilot", "clangd" })
 
 local map = vim.keymap.set
 
