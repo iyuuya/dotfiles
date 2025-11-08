@@ -6,6 +6,9 @@ vim.opt.shiftwidth = 2
 vim.opt.clipboard = { "unnamed", "unnamedplus" }
 vim.opt.scrolloff = 5
 
+vim.opt.exrc = true
+vim.opt.secure = true
+
 require("config.lazy")
 require("lsp")
 
