@@ -29,4 +29,8 @@ return {
 			"neovim/nvim-lspconfig",
 		},
 	},
+	{ "antosha417/nvim-lsp-file-operations", opts = {} },
+	{ "ray-x/lsp_signature.nvim", opts = {} },
+	{ "rachartier/tiny-inline-diagnostic.nvim", opts = {} },
+	{ "folke/trouble.nvim", opts = {} },
 }
