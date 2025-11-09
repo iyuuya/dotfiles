@@ -1,18 +1,6 @@
+--------------------------------------------------------------------------------
 -- lsp
 --------------------------------------------------------------------------------
--- See https://gpanders.com/blog/whats-new-in-neovim-0-11/ for a nice overview
--- of how the lsp setup works in neovim 0.11+.
-
--- This actually just enables the lsp servers.
--- The configuration is found in the lsp folder inside the nvim config folder,
--- so in ~.config/lsp/lua_ls.lua for lua_ls, for example.
-vim.lsp.config("copilot", {
-	settings = {
-		telemetry = {
-			telemetryLevel = "off",
-		},
-	},
-})
 
 vim.lsp.enable({ "lua_ls", "copilot", "clangd" })
 
