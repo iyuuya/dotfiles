@@ -1,8 +1,8 @@
 vim.opt.number = true
 vim.opt.expandtab = true
 vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
+vim.opt.softtabstop = -1
+vim.opt.shiftwidth = 0
 vim.opt.clipboard = { "unnamed", "unnamedplus" }
 vim.opt.scrolloff = 5
 
