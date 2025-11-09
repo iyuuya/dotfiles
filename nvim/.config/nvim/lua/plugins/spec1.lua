@@ -8,19 +8,6 @@ return {
 		opts = {},
 	},
 	--------------------------------------------------------------------------------
-	--- file explorer
-	--------------------------------------------------------------------------------
-	{
-		"nvim-tree/nvim-tree.lua",
-		dependencies = {
-			{ "nvim-tree/nvim-web-devicons", opts = {} },
-		},
-		opts = {},
-		keys = {
-			{ "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Toggle NvimTree", mode = "n" },
-		},
-	},
-	--------------------------------------------------------------------------------
 	--- lsp
 	--------------------------------------------------------------------------------
 	{
@@ -127,7 +114,6 @@ return {
 		},
 	},
 	{ "s1n7ax/nvim-window-picker", opts = {} },
-	{ "nvim-neo-tree/neo-tree.nvim", opts = {}, dependencies = { "nvim-lua/plenary.nvim" } },
 	{ "rcarriga/nvim-notify", opts = {} },
 	{
 		"folke/noice.nvim",
