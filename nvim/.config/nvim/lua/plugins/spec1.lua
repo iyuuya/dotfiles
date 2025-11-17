@@ -55,4 +55,8 @@ return {
 			},
 		},
 	},
+	{
+		"Mythos-404/xmake.nvim",
+		opts = {},
+	},
 }
