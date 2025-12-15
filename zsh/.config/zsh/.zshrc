@@ -96,7 +96,9 @@ else
 fi
 }
 
-eval "$(direnv hook zsh)"
+if command -V direnv > /dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+fi
 
 if command -v eza >/dev/null 2>&1; then
   alias ls=eza
@@ -179,14 +181,22 @@ fi
 #   [ -f $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # fi
 
-if test -e $HOME/.config/zsh/.zshrc.local; then
-  source "$HOME/.config/zsh/.zshrc.local"
-fi
-
 autoload -Uz compinit && compinit
 
 if command -v carapace > /dev/null 2>&1; then 
   export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense'
   source <(carapace _carapace zsh)
   source <(carapace chmod zsh)
+fi
+
+if command -v envet > /dev/null 2>&1; then
+  eval "$(envet completion zsh)"
+fi
+
+if command -v fnox > /dev/null 2>&1; then
+  eval "$(fnox activate zsh)"
+fi
+
+if test -e $HOME/.config/zsh/.zshrc.local; then
+  source "$HOME/.config/zsh/.zshrc.local"
 fi
