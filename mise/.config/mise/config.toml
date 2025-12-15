@@ -1,5 +1,5 @@
 [tools]
-node      = "25"
+node      = "24"
 ruby      = "3"
 python    = "3"
 ghq       = "latest"
@@ -28,6 +28,9 @@ usage = "latest"
 "go:github.com/iyuuya/envet" = "latest"
 "gem:tmuxinator" = "latest"
 "pipx:hapless" = "latest"
+fnox = "latest"
+age = "latest"
+bun = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["ruby", "node"]
