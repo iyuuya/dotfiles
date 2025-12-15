@@ -2,6 +2,7 @@
 set-option -g status "on"
 
 # default statusbar color
+set -g status-bg colour237
 set-option -g status-style bg=colour237,fg=colour223 # bg=bg1, fg=fg1
 
 # default window title colors

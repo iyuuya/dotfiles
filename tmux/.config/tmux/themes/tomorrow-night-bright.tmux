@@ -12,7 +12,6 @@
 #   #7aa6da Blue
 #   #c397d8 Purple
 
-
 ## set status bar
 set -g status-style bg=default
 setw -g window-status-current-style bg="#2a2a2a"
@@ -69,3 +68,5 @@ set-window-option -g window-status-current-format '#[fg=#f99157,bg=#2d2d2d] #I #
 set -g pane-border-style bg=default
 set -g pane-border-style fg="#999999"
 set -g pane-active-border-style fg="#f99157"
+
+# vim: set ft=tmux tw=0 nowrap:

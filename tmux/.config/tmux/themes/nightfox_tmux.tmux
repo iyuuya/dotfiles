@@ -21,3 +21,5 @@ setw -g window-status-separator ""
 setw -g window-status-style "NONE,fg=#71839b,bg=#131a24"
 setw -g window-status-format "#[fg=#131a24,bg=#131a24,nobold,nounderscore,noitalics]#[default] #I  #W #F #[fg=#131a24,bg=#131a24,nobold,nounderscore,noitalics]"
 setw -g window-status-current-format "#[fg=#131a24,bg=#aeafb0,nobold,nounderscore,noitalics]#[fg=#719cd6,bg=#aeafb0,bold] #I  #W #F #[fg=#aeafb0,bg=#131a24,nobold,nounderscore,noitalics]"
+
+# vim: set ft=tmux tw=0 nowrap:
