@@ -204,6 +204,8 @@ return {
 	},
 	{
 		"olimorris/codecompanion.nvim",
+		-- tag = "v17.33.0",
+		-- pin = true,
 		config = function()
 			require("codecompanion").setup({
 				strategies = {

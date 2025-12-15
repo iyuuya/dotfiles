@@ -3,6 +3,12 @@
 --------------------------------------------------------------------------------
 return {
 	{
+		"brenoprata10/nvim-highlight-colors",
+		lazy = true,
+		event = { "BufReadPost", "BufNewFile" },
+		opts = {},
+	},
+	{
 		"rebelot/kanagawa.nvim",
 		lazy = false,
 		priority = 1000,

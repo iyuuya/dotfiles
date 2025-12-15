@@ -59,4 +59,15 @@ return {
 		"Mythos-404/xmake.nvim",
 		opts = {},
 	},
+	{
+		"iamcco/markdown-preview.nvim",
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		ft = { "markdown" },
+		build = function()
+			vim.fn["mkdp#util#install"]()
+		end,
+	},
+	{
+		"https://github.com/kchmck/vim-coffee-script"
+	},
 }
