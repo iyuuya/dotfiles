@@ -156,6 +156,8 @@ fpath=(
   "${fpath[@]}"
 )
 
+autoload -Uz lightmode
+
 if command -v mise > /dev/null 2>&1; then
   if [ ! -f "$ZDOTDIR/functions/_mise" ]; then
     mise completion zsh > "$ZDOTDIR/functions/_mise"
