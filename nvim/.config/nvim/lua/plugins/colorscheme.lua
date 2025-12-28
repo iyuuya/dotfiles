@@ -46,6 +46,9 @@ return {
 			priority = 1000,
 			config = function()
 				local ef = require("everforest")
+				if os.getenv("LIGHTMODE") == "1" then
+					vim.o.background = "light"
+				end
 				ef.setup({
 					background = "hard", -- hard, medium, soft
 					transparent_background_level = 3, -- 0, 1, 2, 3
