@@ -5,6 +5,7 @@ local pixelmode = wz.config_builder()
 pixelmode.font = wz.font("PixelMplus12")
 pixelmode.color_scheme = "iceberg-dark"
 pixelmode.font_size = 20.0
+pixelmode.window_background_opacity = 1
 
 local livemode = wz.config_builder()
 livemode.font = wz.font("JetBrains Mono")
