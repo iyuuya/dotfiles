@@ -17,7 +17,7 @@ end
 config.automatically_reload_config = true
 
 -- ColorScheme
-config.color_scheme = "Everforest Dark Hard (Gogh)"
+config.color_scheme = "catppuccin-mocha"
 -- config.color_scheme = "iceberg-dark"
 -- config.color_scheme = "Gruvbox dark, hard (base16)"
 -- config.color_scheme = "Tomorrow Night Bright"

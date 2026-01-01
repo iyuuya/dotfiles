@@ -3,19 +3,19 @@ local act = wz.action
 
 local pixelmode = wz.config_builder()
 pixelmode.font = wz.font("PixelMplus12")
-pixelmode.color_scheme = "iceberg-dark"
+pixelmode.color_scheme = "catppuccin-mocha"
 pixelmode.font_size = 20.0
 pixelmode.window_background_opacity = 1
 
 local livemode = wz.config_builder()
 livemode.font = wz.font("JetBrains Mono")
-livemode.color_scheme = "Catppuccin Mocha"
+livemode.color_scheme = "catppuccin-mocha"
+pixelmode.window_background_opacity = 0.9
 livemode.font_size = 16.0
 
 local notemode = wz.config_builder()
 notemode.font = wz.font("JetBrains Mono")
--- notemode.color_scheme = "Builtin Solarized Light"
-notemode.color_scheme = "Everforest Light Hard (Gogh)"
+notemode.color_scheme = "catppuccin-latte"
 notemode.font_size = 18.0
 notemode.window_background_opacity = 1
 notemode.macos_window_background_blur = 0
