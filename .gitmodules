@@ -1,0 +1,6 @@
+[submodule "tmux/.config/tmux/plugins/catpuccin"]
+	path = tmux/.config/tmux/plugins/catppuccin
+	url = https://github.com/catppuccin/tmux
+[submodule "tmux/.config/tmux/plugins/tmux-cpu"]
+	path = tmux/.config/tmux/plugins/tmux-cpu
+	url = https://github.com/tmux-plugins/tmux-cpu
