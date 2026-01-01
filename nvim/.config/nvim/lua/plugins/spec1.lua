@@ -68,6 +68,39 @@ return {
 		end,
 	},
 	{
-		"https://github.com/kchmck/vim-coffee-script"
+		"epwalsh/obsidian.nvim",
+		ft = "markdown",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = {
+			workspaces = {
+				{
+					name = "vault",
+					path = "~/.local/src/forgejo.pi/iyuuya/vault",
+				},
+			},
+		},
+	},
+	{
+		"epwalsh/pomo.nvim",
+		opts = {
+			sessions = {
+				pomodoro = {
+					{ name = "Work", duration = "25m" },
+					{ name = "Short Break", duration = "5m" },
+					{ name = "Work", duration = "25m" },
+					{ name = "Short Break", duration = "5m" },
+					{ name = "Work", duration = "25m" },
+					{ name = "Long Break", duration = "15m" },
+				},
+			},
+		},
+	},
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.nvim", "epwalsh/obsidian.nvim" },
+		opts = {},
+	},
+	{
+		"https://github.com/kchmck/vim-coffee-script",
 	},
 }

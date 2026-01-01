@@ -12,9 +12,14 @@ return {
 		end,
 	},
 	{
-		"zbirenbaum/copilot-cmp",
-		after = { "copilot.lua" },
-		config = function() end,
+		"zbirenbaum/copilot.lua",
+		dependencies = {
+			"copilotlsp-nvim/copilot-lsp"
+		},
+		-- after = { "copilot.lua" },
+		config = function()
+			require("copilot").setup({})
+		end,
 	},
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
@@ -30,7 +35,7 @@ return {
 		-- See Commands section for default commands if you want to lazy load on them
 		config = function()
 			vim.defer_fn(function()
-				require("copilot_cmp").setup()
+				-- require("copilot_cmp").setup()
 				require("CopilotChat").setup({
 					show_help = "yes",
 					prompts = {
