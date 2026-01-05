@@ -7,6 +7,7 @@ export MOCWORD_DATA=$HOME/.local/share/mocword/mocword.sqlite
 typeset -U path PATH
 path=(
   $HOME/.local/bin(N-/)
+  $HOME/.local/share/bob/nvim-bin(N-/)
   $HOME/go/bin(N-/)
   /opt/homebrew/bin(N-/)
   /opt/homebrew/sbin(N-/)
