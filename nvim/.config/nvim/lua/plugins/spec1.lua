@@ -101,6 +101,13 @@ return {
 		opts = {},
 	},
 	{
-		"https://github.com/kchmck/vim-coffee-script",
+		"kchmck/vim-coffee-script",
+	},
+	{
+		"folke/zen-mode.nvim",
+		opts = {},
+		keys = {
+			{ "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" },
+		},
 	},
 }
