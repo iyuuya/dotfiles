@@ -1,8 +1,9 @@
 nvim/.config/nvim/plugin/packer_compiled.lua
 .luarc.json
 zsh/.config/zsh/.zcompdump
-zsh/.config/zsh/.zshenv.local
-zsh/.config/zsh/.zshrc.local
+zsh/.config/zsh/.zsh_history
+zsh/.config/zsh/.zshenv.*
+zsh/.config/zsh/.zshrc.*
 local_bin/.local/bin/docker
 local_bin/.local/bin/docker-compose
 local_bin/.local/bin/docker-credential-osxkeychain
@@ -12,4 +13,3 @@ local_bin/.local/bin/orbctl
 local_bin/.local/bin/lvim
 local_bin/.local/bin/mise
 local_bin/.local/bin/mitamae
-zsh/.config/zsh/.zsh_history
