@@ -3,6 +3,11 @@
 --------------------------------------------------------------------------------
 return {
 	{
+		"f-person/auto-dark-mode.nvim",
+		opts = {
+		},
+	},
+	{
 		"brenoprata10/nvim-highlight-colors",
 		lazy = true,
 		event = { "BufReadPost", "BufNewFile" },
