@@ -24,7 +24,7 @@ else
       top = 0,
       bottom = 0,
     },
-    window_background_opacity = 0.95,
+    window_background_opacity = 1,
     -- win32_system_backdrop = "Acrylic",
     -- macos_window_background_blur = 0,
     enable_scroll_bar = false,
