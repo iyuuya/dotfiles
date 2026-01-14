@@ -2,6 +2,7 @@ unsetopt GLOBAL_RCS
 export ZDOTDIR="$HOME/.config/zsh"
 
 export EDITOR=nvim
+export HOMEBREW_NO_AUTO_UPDATE=1
 export MOCWORD_DATA=$HOME/.local/share/mocword/mocword.sqlite
 
 typeset -U path PATH
