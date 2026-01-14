@@ -2,6 +2,6 @@
 local wz = require("wezterm")
 
 return {
-  font = wz.font("JetBrains Mono"),
-  font_size = 12.0,
+	font = wz.font("JetBrains Mono"),
+	font_size = 12.0,
 }

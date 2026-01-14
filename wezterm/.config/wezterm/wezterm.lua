@@ -2,17 +2,17 @@ local wezterm = require("wezterm") ---@type Wezterm
 local config = {} ---@type Config
 
 local function merge(dest, src)
-  for k, v in pairs(src) do
-    if type(v) == "table" and type(dest[k]) == "table" then
-      merge(dest[k], v)
-    else
-      dest[k] = v
-    end
-  end
+	for k, v in pairs(src) do
+		if type(v) == "table" and type(dest[k]) == "table" then
+			merge(dest[k], v)
+		else
+			dest[k] = v
+		end
+	end
 end
 
 if wezterm.config_builder then
-  config = wezterm.config_builder()
+	config = wezterm.config_builder()
 end
 config.automatically_reload_config = true
 
@@ -23,8 +23,8 @@ config.automatically_reload_config = true
 -- config.color_scheme = "Tomorrow Night Bright"
 
 require("plugins.catppuccin").apply_to_config(config, {
-  sync = true,
-  sync_flavors = { light = "latte", dark = "mocha" },
+	sync = true,
+	sync_flavors = { light = "latte", dark = "mocha" },
 })
 
 merge(config, require("fonts"))

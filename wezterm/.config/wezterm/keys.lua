@@ -75,7 +75,7 @@ end
 
 return {
 	leader = {
-		mods = "CMD",
+		mods = "CTRL|CMD",
 		key = "a",
 		timeout_milliseconds = 1000,
 	},
