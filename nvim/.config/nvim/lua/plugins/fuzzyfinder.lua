@@ -9,6 +9,8 @@ return {
 		keys = {
 			{ "<leader>f", group = "file" },
 			{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File", mode = "n" },
+			{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live Grep", mode = "n" },
+			{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers", mode = "n" },
 		},
 	},
 	{
