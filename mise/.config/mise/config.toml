@@ -30,8 +30,14 @@ fnox = "latest"
 age = "latest"
 bun = "latest"
 bob = "latest"
-ruby = "4.0"
+ruby = "4"
+ripgrep = "latest"
+"npm:@openai/codex" = "latest"
+"npm:@google/gemini-cli" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["ruby", "node"]
 experimental = true
+
+[settings.ruby]
+compile = true
