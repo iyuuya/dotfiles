@@ -14,6 +14,7 @@ if os.getenv("PIXELMODE") then
 		enable_scroll_bar = false,
 		initial_cols = 160,
 		initial_rows = 48,
+		adjust_window_size_when_changing_font_size = false,
 	}
 else
 	return {
@@ -30,5 +31,6 @@ else
 		enable_scroll_bar = false,
 		initial_cols = 240,
 		initial_rows = 80,
+		adjust_window_size_when_changing_font_size = false,
 	}
 end
