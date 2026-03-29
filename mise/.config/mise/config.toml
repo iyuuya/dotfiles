@@ -32,7 +32,6 @@ bun = "latest"
 bob = "latest"
 ruby = "4"
 ripgrep = "latest"
-"npm:@openai/codex" = "latest"
 "npm:@google/gemini-cli" = "latest"
 
 [settings]
