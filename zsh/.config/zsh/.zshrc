@@ -1,7 +1,5 @@
 export GPG_TTY=$(tty)
 
-alias claude="DISABLE_TELEMETRY=1 DISABLE_ERROR_REPORTING=1 claude"
-
 if command -v bw >/dev/null 2>&1; then
   function envwarden_setup() {
     eval "export BW_SESSION=\"\$(bw unlock --raw)\"; export ENVWARDEN_FOLDERID=\$(bw get folder Dev/envwarden | jq -r .id)"
@@ -198,6 +196,8 @@ fi
 if command -v fnox > /dev/null 2>&1; then
   eval "$(fnox activate zsh)"
 fi
+
+autoload -Uz fzf-gh-run-failures
 
 if test -e $HOME/.config/zsh/.zshrc.local; then
   source "$HOME/.config/zsh/.zshrc.local"

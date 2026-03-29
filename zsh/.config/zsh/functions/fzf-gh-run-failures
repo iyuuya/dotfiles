@@ -1,0 +1,1 @@
+fzf --ansi --header-lines=1 --layout=reverse <<< "$(GH_FORCE_TTY=$(tput cols) gh run list --status failure --limit 20)" | grep -oE '[0-9]{9,}' | xargs gh run view --log-failed

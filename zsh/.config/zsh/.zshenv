@@ -54,3 +54,6 @@ fi
 if test -f $HOME/.config/zsh/.zshenv.local; then
   source "$HOME/.config/zsh/.zshenv.local"
 fi
+
+export DISABLE_TELEMETRY=1
+export DISABLE_ERROR_REPORTING=1
