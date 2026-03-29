@@ -33,10 +33,10 @@ local launch_menu = {
 		label = "iarch",
 		args = { "/Users/yuya-ito/.orbstack/bin/orb", "run", "-m", "iarch" },
 	},
-	{
-		label = "iubuntu",
-		args = { "/Users/yuya-ito/.orbstack/bin/orb", "run", "-m", "iubuntu" },
-	},
+	-- {
+	-- 	label = "iubuntu",
+	-- 	args = { "/Users/yuya-ito/.orbstack/bin/orb", "run", "-m", "iubuntu" },
+	-- },
 }
 
 --   -- key bindings
